@@ -17,10 +17,10 @@ jobs:
 
       # Lint Bicep code 
     - name: Run Bicep linter
-      run: 
-      ls -la
-      az bicep build --file ./main.bicep
-
+      run: |
+        ls -la
+        az bicep build --file ./main.bicep
+        
   deploy:
 #   if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
