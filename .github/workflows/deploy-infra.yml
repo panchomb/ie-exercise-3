@@ -17,7 +17,7 @@ jobs:
 
       # Lint Bicep code 
     - name: Run Bicep linter
-      run: az bicep build --file ./infra/main.bicep
+      run: az bicep build --file ./main.bicep
 
   deploy:
 #   if: github.ref == 'refs/heads/dev'
@@ -42,6 +42,6 @@ jobs:
       with:
         subscriptionId: ${{ env.SUBSCRIPTION_ID_DEV }}
         resourceGroupName: ${{ env.RESOURCE_GROUP_DEV }}
-        template: ./infra/main.bicep
+        template: ./main.bicep
         parameters: infra/parameters/parameters.json
         deploymentName: ${{ env.USER_ALIAS }}
