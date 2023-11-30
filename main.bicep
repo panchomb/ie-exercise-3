@@ -16,7 +16,7 @@ param appName string
 param location string = resourceGroup().location
 @sys.description('The location of the resources')
 
-module registry 'infra/modules/container-registry/registry/main.bicep' = {
+module registry 'modules/container-registry/registry/main.bicep' = {
   name: '${uniqueString(deployment().name)}-acr'
   params: {
     name: containerRegistryName
@@ -25,7 +25,7 @@ module registry 'infra/modules/container-registry/registry/main.bicep' = {
   }
 }
 
-module serverfarm 'infra/modules/web/serverfarm/main.bicep' = {
+module serverfarm 'modules/web/serverfarm/main.bicep' = {
   name: '${uniqueString(deployment().name)}-asp'
   params: {
     name: appServicePlanName
@@ -42,7 +42,7 @@ module serverfarm 'infra/modules/web/serverfarm/main.bicep' = {
   }
 }
 
-module website 'infra/modules/web/site/main.bicep' = {
+module website 'modules/web/site/main.bicep' = {
   dependsOn: [
     registry
     serverfarm
