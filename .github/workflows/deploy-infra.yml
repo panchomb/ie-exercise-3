@@ -17,8 +17,8 @@ jobs:
 
       # Lint Bicep code 
     - name: Run Bicep linter
-      run: az bicep build --file ./infra/main.bicep
-      working-directory: ./infra
+      run: az bicep build --file ./main.bicep
+      working-directory: infra
 
   deploy:
 #   if: github.ref == 'refs/heads/dev'
