@@ -1,0 +1,7 @@
+{
+    "modulePath": "./modules",
+    "rules": {
+      "no-deployments-resources": "warning"
+    }
+  }
+  
