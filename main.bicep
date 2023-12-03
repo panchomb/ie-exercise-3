@@ -37,7 +37,6 @@ module serverfarm 'modules/web/serverfarm/main.bicep' = {
       size: 'B1'
       tier: 'Basic'
     }
-    kind: 'Linux'
     reserved: true
   }
 }
@@ -59,7 +58,7 @@ module website 'modules/web/site/main.bicep' = {
     }
     appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
+      DOCKER_REGISTRY_SERVER_URL: 'https://${containerRegistryName}.azurecr.io'
     }
-    dockerRegistryServerURL: 'https://${containerRegistryName}.azurecr.io'
   }
 }
