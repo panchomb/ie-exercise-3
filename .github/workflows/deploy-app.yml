@@ -33,4 +33,4 @@ jobs:
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'panchomb-app'
-          images: 'panchombacr.azurecr.io/flask-app-demo:latest
+          images: 'panchombacr.azurecr.io/flask-app-demo:latest'
