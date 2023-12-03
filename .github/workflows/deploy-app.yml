@@ -25,11 +25,12 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - run: |
-          docker build ./app -t panchomb.azurecr.io/flask-app-demo:${{ github.sha }}
-          docker push panchomb.azurecr.io/flask-app-demo:${{ github.sha }} 
+      - working-directory: ./app
+        run: |
+          docker build . -t panchombacr.azurecr.io/flask-app-demo:${{ github.sha }}
+          docker push panchombacr.azurecr.io/flask-app-demo:${{ github.sha }} 
 
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'node-rnc'
-          images: 'panchomb.azurecr.io/flask-app-demo:${{ github.sha }}'
+          images: 'panchombacr.azurecr.io/flask-app-demo:${{ github.sha }}'
