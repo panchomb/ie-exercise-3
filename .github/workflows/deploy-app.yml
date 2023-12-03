@@ -32,5 +32,5 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: 'node-rnc'
+          app-name: 'panchomb-app'
           images: 'panchombacr.azurecr.io/flask-app-demo:${{ github.sha }}'
