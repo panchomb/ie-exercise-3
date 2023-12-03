@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
-          docker build . -t panchomb.azurecr.io/flask-app-demo:${{ github.sha }}
+          docker build ./app -t panchomb.azurecr.io/flask-app-demo:${{ github.sha }}
           docker push panchomb.azurecr.io/flask-app-demo:${{ github.sha }} 
 
       - uses: azure/webapps-deploy@v2
