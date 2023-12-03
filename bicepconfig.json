@@ -3,7 +3,7 @@
         "core": {
             "rules": {
                 "no-deployments-resources":{
-                    "level": "warning"
+                    "level": "info"
                 }
             }
         }
