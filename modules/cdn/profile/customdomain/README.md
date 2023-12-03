@@ -42,10 +42,16 @@ This module deploys a CDN Profile Custom Domains.
 | :-- | :-- | :-- |
 | [`azureDnsZoneResourceId`](#parameter-azurednszoneresourceid) | string | Resource reference to the Azure DNS zone. |
 
+### Parameter: `azureDnsZoneResourceId`
+
+Resource reference to the Azure DNS zone.
+- Required: No
+- Type: string
+- Default: `''`
+
 ### Parameter: `certificateType`
 
 The type of the certificate used for secure delivery.
-
 - Required: Yes
 - Type: string
 - Allowed:
@@ -56,31 +62,9 @@ The type of the certificate used for secure delivery.
   ]
   ```
 
-### Parameter: `hostName`
-
-The host name of the domain. Must be a domain name.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `name`
-
-The name of the custom domain.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `profileName`
-
-The name of the CDN profile.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -88,15 +72,19 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `extendedProperties`
 
 Key-Value pair representing migration properties for domains.
-
 - Required: No
 - Type: object
 - Default: `{}`
 
+### Parameter: `hostName`
+
+The host name of the domain. Must be a domain name.
+- Required: Yes
+- Type: string
+
 ### Parameter: `minimumTlsVersion`
 
 The minimum TLS version required for the custom domain. Default value: TLS12.
-
 - Required: No
 - Type: string
 - Default: `'TLS12'`
@@ -108,26 +96,28 @@ The minimum TLS version required for the custom domain. Default value: TLS12.
   ]
   ```
 
+### Parameter: `name`
+
+The name of the custom domain.
+- Required: Yes
+- Type: string
+
 ### Parameter: `preValidatedCustomDomainResourceId`
 
 Resource reference to the Azure resource where custom domain ownership was prevalidated.
-
 - Required: No
 - Type: string
 - Default: `''`
+
+### Parameter: `profileName`
+
+The name of the CDN profile.
+- Required: Yes
+- Type: string
 
 ### Parameter: `secretName`
 
 The name of the secret. ie. subs/rg/profile/secret.
-
-- Required: No
-- Type: string
-- Default: `''`
-
-### Parameter: `azureDnsZoneResourceId`
-
-Resource reference to the Azure DNS zone.
-
 - Required: No
 - Type: string
 - Default: `''`

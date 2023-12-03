@@ -358,24 +358,9 @@ module actionGroup 'br:bicep/modules/insights.action-group:1.0.0' = {
 | [`voiceReceivers`](#parameter-voicereceivers) | array | The list of voice receivers that are part of this action group. |
 | [`webhookReceivers`](#parameter-webhookreceivers) | array | The list of webhook receivers that are part of this action group. |
 
-### Parameter: `groupShortName`
-
-The short name of the action group.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `name`
-
-The name of the action group.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `armRoleReceivers`
 
 The list of ARM role receivers that are part of this action group. Roles are Azure RBAC roles and only built-in roles are supported.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -383,7 +368,6 @@ The list of ARM role receivers that are part of this action group. Roles are Azu
 ### Parameter: `automationRunbookReceivers`
 
 The list of AutomationRunbook receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -391,7 +375,6 @@ The list of AutomationRunbook receivers that are part of this action group.
 ### Parameter: `azureAppPushReceivers`
 
 The list of AzureAppPush receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -399,7 +382,6 @@ The list of AzureAppPush receivers that are part of this action group.
 ### Parameter: `azureFunctionReceivers`
 
 The list of function receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -407,7 +389,6 @@ The list of function receivers that are part of this action group.
 ### Parameter: `emailReceivers`
 
 The list of email receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -415,7 +396,6 @@ The list of email receivers that are part of this action group.
 ### Parameter: `enabled`
 
 Indicates whether this action group is enabled. If an action group is not enabled, then none of its receivers will receive communications.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -423,15 +403,19 @@ Indicates whether this action group is enabled. If an action group is not enable
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
 
+### Parameter: `groupShortName`
+
+The short name of the action group.
+- Required: Yes
+- Type: string
+
 ### Parameter: `itsmReceivers`
 
 The list of ITSM receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -439,7 +423,6 @@ The list of ITSM receivers that are part of this action group.
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `'global'`
@@ -447,104 +430,87 @@ Location for all resources.
 ### Parameter: `logicAppReceivers`
 
 The list of logic app receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
 
+### Parameter: `name`
+
+The name of the action group.
+- Required: Yes
+- Type: string
+
 ### Parameter: `roleAssignments`
 
 Array of role assignment objects that contain the 'roleDefinitionIdOrName' and 'principalId' to define RBAC role assignments on this resource. In the roleDefinitionIdOrName attribute, you can provide either the display name of the role definition, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
 - Required: No
 - Type: array
 
-**Required parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`principalId`](#parameter-roleassignmentsprincipalid) | string | The principal ID of the principal (user/group/identity) to assign the role to. |
-| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | string | The name of the role to assign. If it cannot be found you can specify the role definition ID instead. |
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`condition`](#parameter-roleassignmentscondition) | string | The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
-| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | string | Version of the condition. |
-| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | string | The Resource Id of the delegated managed identity resource. |
-| [`description`](#parameter-roleassignmentsdescription) | string | The description of the role assignment. |
-| [`principalType`](#parameter-roleassignmentsprincipaltype) | string | The principal type of the assigned principal ID. |
-
-### Parameter: `roleAssignments.principalId`
-
-The principal ID of the principal (user/group/identity) to assign the role to.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `roleAssignments.roleDefinitionIdOrName`
-
-The name of the role to assign. If it cannot be found you can specify the role definition ID instead.
-
-- Required: Yes
-- Type: string
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`condition`](#parameter-roleassignmentscondition) | No | string | Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
+| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | No | string | Optional. Version of the condition. |
+| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | No | string | Optional. The Resource Id of the delegated managed identity resource. |
+| [`description`](#parameter-roleassignmentsdescription) | No | string | Optional. The description of the role assignment. |
+| [`principalId`](#parameter-roleassignmentsprincipalid) | Yes | string | Required. The principal ID of the principal (user/group/identity) to assign the role to. |
+| [`principalType`](#parameter-roleassignmentsprincipaltype) | No | string | Optional. The principal type of the assigned principal ID. |
+| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | Yes | string | Required. The name of the role to assign. If it cannot be found you can specify the role definition ID instead. |
 
 ### Parameter: `roleAssignments.condition`
 
-The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
+Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.conditionVersion`
 
-Version of the condition.
+Optional. Version of the condition.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    '2.0'
-  ]
-  ```
+- Allowed: `[2.0]`
 
 ### Parameter: `roleAssignments.delegatedManagedIdentityResourceId`
 
-The Resource Id of the delegated managed identity resource.
+Optional. The Resource Id of the delegated managed identity resource.
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.description`
 
-The description of the role assignment.
+Optional. The description of the role assignment.
 
 - Required: No
+- Type: string
+
+### Parameter: `roleAssignments.principalId`
+
+Required. The principal ID of the principal (user/group/identity) to assign the role to.
+
+- Required: Yes
 - Type: string
 
 ### Parameter: `roleAssignments.principalType`
 
-The principal type of the assigned principal ID.
+Optional. The principal type of the assigned principal ID.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'Device'
-    'ForeignGroup'
-    'Group'
-    'ServicePrincipal'
-    'User'
-  ]
-  ```
+- Allowed: `[Device, ForeignGroup, Group, ServicePrincipal, User]`
+
+### Parameter: `roleAssignments.roleDefinitionIdOrName`
+
+Required. The name of the role to assign. If it cannot be found you can specify the role definition ID instead.
+
+- Required: Yes
+- Type: string
 
 ### Parameter: `smsReceivers`
 
 The list of SMS receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -552,14 +518,12 @@ The list of SMS receivers that are part of this action group.
 ### Parameter: `tags`
 
 Tags of the resource.
-
 - Required: No
 - Type: object
 
 ### Parameter: `voiceReceivers`
 
 The list of voice receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -567,7 +531,6 @@ The list of voice receivers that are part of this action group.
 ### Parameter: `webhookReceivers`
 
 The list of webhook receivers that are part of this action group.
-
 - Required: No
 - Type: array
 - Default: `[]`

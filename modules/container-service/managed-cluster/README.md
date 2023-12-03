@@ -1278,40 +1278,9 @@ module managedCluster 'br:bicep/modules/container-service.managed-cluster:1.0.0'
 | [`tags`](#parameter-tags) | object | Tags of the resource. |
 | [`webApplicationRoutingEnabled`](#parameter-webapplicationroutingenabled) | bool | Specifies whether the webApplicationRoutingEnabled add-on is enabled or not. |
 
-### Parameter: `name`
-
-Specifies the name of the AKS cluster.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `primaryAgentPoolProfile`
-
-Properties of the primary agent pool.
-
-- Required: Yes
-- Type: array
-
-### Parameter: `aksServicePrincipalProfile`
-
-Information about a service principal identity for the cluster to use for manipulating Azure APIs. Required if no managed identities are assigned to the cluster.
-
-- Required: No
-- Type: object
-- Default: `{}`
-
-### Parameter: `appGatewayResourceId`
-
-Specifies the resource ID of connected application gateway. Required if `ingressApplicationGatewayEnabled` is set to `true`.
-
-- Required: No
-- Type: string
-- Default: `''`
-
 ### Parameter: `aadProfileAdminGroupObjectIDs`
 
 Specifies the AAD group object IDs that will have admin role of the cluster.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1319,7 +1288,6 @@ Specifies the AAD group object IDs that will have admin role of the cluster.
 ### Parameter: `aadProfileClientAppID`
 
 The client AAD application ID.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1327,7 +1295,6 @@ The client AAD application ID.
 ### Parameter: `aadProfileEnableAzureRBAC`
 
 Specifies whether to enable Azure RBAC for Kubernetes authorization.
-
 - Required: No
 - Type: bool
 - Default: `[parameters('enableRBAC')]`
@@ -1335,7 +1302,6 @@ Specifies whether to enable Azure RBAC for Kubernetes authorization.
 ### Parameter: `aadProfileManaged`
 
 Specifies whether to enable managed AAD integration.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -1343,7 +1309,6 @@ Specifies whether to enable managed AAD integration.
 ### Parameter: `aadProfileServerAppID`
 
 The server AAD application ID.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1351,7 +1316,6 @@ The server AAD application ID.
 ### Parameter: `aadProfileServerAppSecret`
 
 The server AAD application secret.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1359,7 +1323,6 @@ The server AAD application secret.
 ### Parameter: `aadProfileTenantId`
 
 Specifies the tenant ID of the Azure Active Directory used by the AKS cluster for authentication.
-
 - Required: No
 - Type: string
 - Default: `[subscription().tenantId]`
@@ -1367,7 +1330,6 @@ Specifies the tenant ID of the Azure Active Directory used by the AKS cluster fo
 ### Parameter: `aciConnectorLinuxEnabled`
 
 Specifies whether the aciConnectorLinux add-on is enabled or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1375,7 +1337,6 @@ Specifies whether the aciConnectorLinux add-on is enabled or not.
 ### Parameter: `adminUsername`
 
 Specifies the administrator username of Linux virtual machines.
-
 - Required: No
 - Type: string
 - Default: `'azureuser'`
@@ -1383,15 +1344,27 @@ Specifies the administrator username of Linux virtual machines.
 ### Parameter: `agentPools`
 
 Define one or more secondary/additional agent pools.
-
 - Required: No
 - Type: array
 - Default: `[]`
 
+### Parameter: `aksServicePrincipalProfile`
+
+Information about a service principal identity for the cluster to use for manipulating Azure APIs. Required if no managed identities are assigned to the cluster.
+- Required: No
+- Type: object
+- Default: `{}`
+
+### Parameter: `appGatewayResourceId`
+
+Specifies the resource ID of connected application gateway. Required if `ingressApplicationGatewayEnabled` is set to `true`.
+- Required: No
+- Type: string
+- Default: `''`
+
 ### Parameter: `authorizedIPRanges`
 
 IP ranges are specified in CIDR format, e.g. 137.117.106.88/29. This feature is not compatible with clusters that use Public IP Per Node, or clusters that are using a Basic Load Balancer.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1399,7 +1372,6 @@ IP ranges are specified in CIDR format, e.g. 137.117.106.88/29. This feature is 
 ### Parameter: `autoScalerProfileBalanceSimilarNodeGroups`
 
 Specifies the balance of similar node groups for the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'false'`
@@ -1414,7 +1386,6 @@ Specifies the balance of similar node groups for the auto-scaler of the AKS clus
 ### Parameter: `autoScalerProfileExpander`
 
 Specifies the expand strategy for the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'random'`
@@ -1431,7 +1402,6 @@ Specifies the expand strategy for the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileMaxEmptyBulkDelete`
 
 Specifies the maximum empty bulk delete for the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'10'`
@@ -1439,7 +1409,6 @@ Specifies the maximum empty bulk delete for the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileMaxGracefulTerminationSec`
 
 Specifies the max graceful termination time interval in seconds for the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'600'`
@@ -1447,7 +1416,6 @@ Specifies the max graceful termination time interval in seconds for the auto-sca
 ### Parameter: `autoScalerProfileMaxNodeProvisionTime`
 
 Specifies the maximum node provisioning time for the auto-scaler of the AKS cluster. Values must be an integer followed by an "m". No unit of time other than minutes (m) is supported.
-
 - Required: No
 - Type: string
 - Default: `'15m'`
@@ -1455,7 +1423,6 @@ Specifies the maximum node provisioning time for the auto-scaler of the AKS clus
 ### Parameter: `autoScalerProfileMaxTotalUnreadyPercentage`
 
 Specifies the mximum total unready percentage for the auto-scaler of the AKS cluster. The maximum is 100 and the minimum is 0.
-
 - Required: No
 - Type: string
 - Default: `'45'`
@@ -1463,7 +1430,6 @@ Specifies the mximum total unready percentage for the auto-scaler of the AKS clu
 ### Parameter: `autoScalerProfileNewPodScaleUpDelay`
 
 For scenarios like burst/batch scale where you do not want CA to act before the kubernetes scheduler could schedule all the pods, you can tell CA to ignore unscheduled pods before they are a certain age. Values must be an integer followed by a unit ("s" for seconds, "m" for minutes, "h" for hours, etc).
-
 - Required: No
 - Type: string
 - Default: `'0s'`
@@ -1471,7 +1437,6 @@ For scenarios like burst/batch scale where you do not want CA to act before the 
 ### Parameter: `autoScalerProfileOkTotalUnreadyCount`
 
 Specifies the OK total unready count for the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'3'`
@@ -1479,7 +1444,6 @@ Specifies the OK total unready count for the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileScaleDownDelayAfterAdd`
 
 Specifies the scale down delay after add of the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'10m'`
@@ -1487,7 +1451,6 @@ Specifies the scale down delay after add of the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileScaleDownDelayAfterDelete`
 
 Specifies the scale down delay after delete of the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'20s'`
@@ -1495,7 +1458,6 @@ Specifies the scale down delay after delete of the auto-scaler of the AKS cluste
 ### Parameter: `autoScalerProfileScaleDownDelayAfterFailure`
 
 Specifies scale down delay after failure of the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'3m'`
@@ -1503,7 +1465,6 @@ Specifies scale down delay after failure of the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileScaleDownUnneededTime`
 
 Specifies the scale down unneeded time of the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'10m'`
@@ -1511,7 +1472,6 @@ Specifies the scale down unneeded time of the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileScaleDownUnreadyTime`
 
 Specifies the scale down unready time of the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'20m'`
@@ -1519,7 +1479,6 @@ Specifies the scale down unready time of the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileScanInterval`
 
 Specifies the scan interval of the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'10s'`
@@ -1527,7 +1486,6 @@ Specifies the scan interval of the auto-scaler of the AKS cluster.
 ### Parameter: `autoScalerProfileSkipNodesWithLocalStorage`
 
 Specifies if nodes with local storage should be skipped for the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'true'`
@@ -1542,7 +1500,6 @@ Specifies if nodes with local storage should be skipped for the auto-scaler of t
 ### Parameter: `autoScalerProfileSkipNodesWithSystemPods`
 
 Specifies if nodes with system pods should be skipped for the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'true'`
@@ -1557,7 +1514,6 @@ Specifies if nodes with system pods should be skipped for the auto-scaler of the
 ### Parameter: `autoScalerProfileUtilizationThreshold`
 
 Specifies the utilization threshold of the auto-scaler of the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `'0.5'`
@@ -1565,7 +1521,6 @@ Specifies the utilization threshold of the auto-scaler of the AKS cluster.
 ### Parameter: `autoUpgradeProfileUpgradeChannel`
 
 Auto-upgrade channel on the AKS cluster.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1584,7 +1539,6 @@ Auto-upgrade channel on the AKS cluster.
 ### Parameter: `azurePolicyEnabled`
 
 Specifies whether the azurepolicy add-on is enabled or not. For security reasons, this setting should be enabled.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -1592,7 +1546,6 @@ Specifies whether the azurepolicy add-on is enabled or not. For security reasons
 ### Parameter: `azurePolicyVersion`
 
 Specifies the azure policy version to use.
-
 - Required: No
 - Type: string
 - Default: `'v2'`
@@ -1600,55 +1553,42 @@ Specifies the azure policy version to use.
 ### Parameter: `customerManagedKey`
 
 The customer managed key definition.
-
 - Required: No
 - Type: object
 
-**Required parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`keyName`](#parameter-customermanagedkeykeyname) | string | The name of the customer managed key to use for encryption. |
-| [`keyVaultNetworkAccess`](#parameter-customermanagedkeykeyvaultnetworkaccess) | string | Network access of key vault. The possible values are Public and Private. Public means the key vault allows public access from all networks. Private means the key vault disables public access and enables private link. The default value is Public. |
-| [`keyVaultResourceId`](#parameter-customermanagedkeykeyvaultresourceid) | string | The resource ID of a key vault to reference a customer managed key for encryption from. |
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`keyVersion`](#parameter-customermanagedkeykeyversion) | string | The version of the customer managed key to reference for encryption. If not provided, using 'latest'. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`keyName`](#parameter-customermanagedkeykeyname) | Yes | string | Required. The name of the customer managed key to use for encryption. |
+| [`keyVaultNetworkAccess`](#parameter-customermanagedkeykeyvaultnetworkaccess) | Yes | string | Required. Network access of key vault. The possible values are Public and Private. Public means the key vault allows public access from all networks. Private means the key vault disables public access and enables private link. The default value is Public. |
+| [`keyVaultResourceId`](#parameter-customermanagedkeykeyvaultresourceid) | Yes | string | Required. The resource ID of a key vault to reference a customer managed key for encryption from. |
+| [`keyVersion`](#parameter-customermanagedkeykeyversion) | No | string | Optional. The version of the customer managed key to reference for encryption. If not provided, using 'latest'. |
 
 ### Parameter: `customerManagedKey.keyName`
 
-The name of the customer managed key to use for encryption.
+Required. The name of the customer managed key to use for encryption.
 
 - Required: Yes
 - Type: string
 
 ### Parameter: `customerManagedKey.keyVaultNetworkAccess`
 
-Network access of key vault. The possible values are Public and Private. Public means the key vault allows public access from all networks. Private means the key vault disables public access and enables private link. The default value is Public.
+Required. Network access of key vault. The possible values are Public and Private. Public means the key vault allows public access from all networks. Private means the key vault disables public access and enables private link. The default value is Public.
 
 - Required: Yes
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'Private'
-    'Public'
-  ]
-  ```
+- Allowed: `[Private, Public]`
 
 ### Parameter: `customerManagedKey.keyVaultResourceId`
 
-The resource ID of a key vault to reference a customer managed key for encryption from.
+Required. The resource ID of a key vault to reference a customer managed key for encryption from.
 
 - Required: Yes
 - Type: string
 
 ### Parameter: `customerManagedKey.keyVersion`
 
-The version of the customer managed key to reference for encryption. If not provided, using 'latest'.
+Optional. The version of the customer managed key to reference for encryption. If not provided, using 'latest'.
 
 - Required: No
 - Type: string
@@ -1656,90 +1596,114 @@ The version of the customer managed key to reference for encryption. If not prov
 ### Parameter: `diagnosticSettings`
 
 The diagnostic settings of the service.
-
 - Required: No
 - Type: array
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`eventHubAuthorizationRuleResourceId`](#parameter-diagnosticsettingseventhubauthorizationruleresourceid) | string | Resource ID of the diagnostic event hub authorization rule for the Event Hubs namespace in which the event hub should be created or streamed to. |
-| [`eventHubName`](#parameter-diagnosticsettingseventhubname) | string | Name of the diagnostic event hub within the namespace to which logs are streamed. Without this, an event hub is created for each log category. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub. |
-| [`logAnalyticsDestinationType`](#parameter-diagnosticsettingsloganalyticsdestinationtype) | string | A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type. |
-| [`logCategoriesAndGroups`](#parameter-diagnosticsettingslogcategoriesandgroups) | array | The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection. |
-| [`marketplacePartnerResourceId`](#parameter-diagnosticsettingsmarketplacepartnerresourceid) | string | The full ARM resource ID of the Marketplace resource to which you would like to send Diagnostic Logs. |
-| [`metricCategories`](#parameter-diagnosticsettingsmetriccategories) | array | The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection. |
-| [`name`](#parameter-diagnosticsettingsname) | string | The name of diagnostic setting. |
-| [`storageAccountResourceId`](#parameter-diagnosticsettingsstorageaccountresourceid) | string | Resource ID of the diagnostic storage account. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub. |
-| [`workspaceResourceId`](#parameter-diagnosticsettingsworkspaceresourceid) | string | Resource ID of the diagnostic log analytics workspace. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`eventHubAuthorizationRuleResourceId`](#parameter-diagnosticsettingseventhubauthorizationruleresourceid) | No | string | Optional. Resource ID of the diagnostic event hub authorization rule for the Event Hubs namespace in which the event hub should be created or streamed to. |
+| [`eventHubName`](#parameter-diagnosticsettingseventhubname) | No | string | Optional. Name of the diagnostic event hub within the namespace to which logs are streamed. Without this, an event hub is created for each log category. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub. |
+| [`logAnalyticsDestinationType`](#parameter-diagnosticsettingsloganalyticsdestinationtype) | No | string | Optional. A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type. |
+| [`logCategoriesAndGroups`](#parameter-diagnosticsettingslogcategoriesandgroups) | No | array | Optional. The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection. |
+| [`marketplacePartnerResourceId`](#parameter-diagnosticsettingsmarketplacepartnerresourceid) | No | string | Optional. The full ARM resource ID of the Marketplace resource to which you would like to send Diagnostic Logs. |
+| [`metricCategories`](#parameter-diagnosticsettingsmetriccategories) | No | array | Optional. The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection. |
+| [`name`](#parameter-diagnosticsettingsname) | No | string | Optional. The name of diagnostic setting. |
+| [`storageAccountResourceId`](#parameter-diagnosticsettingsstorageaccountresourceid) | No | string | Optional. Resource ID of the diagnostic storage account. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub. |
+| [`workspaceResourceId`](#parameter-diagnosticsettingsworkspaceresourceid) | No | string | Optional. Resource ID of the diagnostic log analytics workspace. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub. |
 
 ### Parameter: `diagnosticSettings.eventHubAuthorizationRuleResourceId`
 
-Resource ID of the diagnostic event hub authorization rule for the Event Hubs namespace in which the event hub should be created or streamed to.
+Optional. Resource ID of the diagnostic event hub authorization rule for the Event Hubs namespace in which the event hub should be created or streamed to.
 
 - Required: No
 - Type: string
 
 ### Parameter: `diagnosticSettings.eventHubName`
 
-Name of the diagnostic event hub within the namespace to which logs are streamed. Without this, an event hub is created for each log category. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub.
+Optional. Name of the diagnostic event hub within the namespace to which logs are streamed. Without this, an event hub is created for each log category. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub.
 
 - Required: No
 - Type: string
 
 ### Parameter: `diagnosticSettings.logAnalyticsDestinationType`
 
-A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type.
+Optional. A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'AzureDiagnostics'
-    'Dedicated'
-  ]
-  ```
+- Allowed: `[AzureDiagnostics, Dedicated]`
 
 ### Parameter: `diagnosticSettings.logCategoriesAndGroups`
 
-The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection.
+Optional. The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection.
 
 - Required: No
 - Type: array
 
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`category`](#parameter-diagnosticsettingslogcategoriesandgroupscategory) | No | string | Optional. Name of a Diagnostic Log category for a resource type this setting is applied to. Set the specific logs to collect here. |
+| [`categoryGroup`](#parameter-diagnosticsettingslogcategoriesandgroupscategorygroup) | No | string | Optional. Name of a Diagnostic Log category group for a resource type this setting is applied to. Set to 'AllLogs' to collect all logs. |
+
+### Parameter: `diagnosticSettings.logCategoriesAndGroups.category`
+
+Optional. Name of a Diagnostic Log category for a resource type this setting is applied to. Set the specific logs to collect here.
+
+- Required: No
+- Type: string
+
+### Parameter: `diagnosticSettings.logCategoriesAndGroups.categoryGroup`
+
+Optional. Name of a Diagnostic Log category group for a resource type this setting is applied to. Set to 'AllLogs' to collect all logs.
+
+- Required: No
+- Type: string
+
+
 ### Parameter: `diagnosticSettings.marketplacePartnerResourceId`
 
-The full ARM resource ID of the Marketplace resource to which you would like to send Diagnostic Logs.
+Optional. The full ARM resource ID of the Marketplace resource to which you would like to send Diagnostic Logs.
 
 - Required: No
 - Type: string
 
 ### Parameter: `diagnosticSettings.metricCategories`
 
-The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection.
+Optional. The name of logs that will be streamed. "allLogs" includes all possible logs for the resource. Set to '' to disable log collection.
 
 - Required: No
 - Type: array
 
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`category`](#parameter-diagnosticsettingsmetriccategoriescategory) | Yes | string | Required. Name of a Diagnostic Metric category for a resource type this setting is applied to. Set to 'AllMetrics' to collect all metrics. |
+
+### Parameter: `diagnosticSettings.metricCategories.category`
+
+Required. Name of a Diagnostic Metric category for a resource type this setting is applied to. Set to 'AllMetrics' to collect all metrics.
+
+- Required: Yes
+- Type: string
+
+
 ### Parameter: `diagnosticSettings.name`
 
-The name of diagnostic setting.
+Optional. The name of diagnostic setting.
 
 - Required: No
 - Type: string
 
 ### Parameter: `diagnosticSettings.storageAccountResourceId`
 
-Resource ID of the diagnostic storage account. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub.
+Optional. Resource ID of the diagnostic storage account. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub.
 
 - Required: No
 - Type: string
 
 ### Parameter: `diagnosticSettings.workspaceResourceId`
 
-Resource ID of the diagnostic log analytics workspace. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub.
+Optional. Resource ID of the diagnostic log analytics workspace. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub.
 
 - Required: No
 - Type: string
@@ -1747,7 +1711,6 @@ Resource ID of the diagnostic log analytics workspace. For security reasons, it 
 ### Parameter: `disableLocalAccounts`
 
 If set to true, getting static credentials will be disabled for this cluster. This must only be used on Managed Clusters that are AAD enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1755,7 +1718,6 @@ If set to true, getting static credentials will be disabled for this cluster. Th
 ### Parameter: `disableRunCommand`
 
 Whether to disable run command for the cluster or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1763,7 +1725,6 @@ Whether to disable run command for the cluster or not.
 ### Parameter: `diskEncryptionSetID`
 
 The resource ID of the disc encryption set to apply to the cluster. For security reasons, this value should be provided.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1771,7 +1732,6 @@ The resource ID of the disc encryption set to apply to the cluster. For security
 ### Parameter: `dnsPrefix`
 
 Specifies the DNS prefix specified when creating the managed cluster.
-
 - Required: No
 - Type: string
 - Default: `[parameters('name')]`
@@ -1779,7 +1739,6 @@ Specifies the DNS prefix specified when creating the managed cluster.
 ### Parameter: `dnsServiceIP`
 
 Specifies the IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in serviceCidr.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1787,7 +1746,6 @@ Specifies the IP address assigned to the Kubernetes DNS service. It must be with
 ### Parameter: `dnsZoneResourceId`
 
 Specifies the resource ID of connected DNS zone. It will be ignored if `webApplicationRoutingEnabled` is set to `false`.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1795,7 +1753,6 @@ Specifies the resource ID of connected DNS zone. It will be ignored if `webAppli
 ### Parameter: `enableAzureDefender`
 
 Whether to enable Azure Defender.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1803,7 +1760,6 @@ Whether to enable Azure Defender.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -1811,7 +1767,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `enableDnsZoneContributorRoleAssignment`
 
 Specifies whether assing the DNS zone contributor role to the cluster service principal. It will be ignored if `webApplicationRoutingEnabled` is set to `false` or `dnsZoneResourceId` not provided.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -1819,7 +1774,6 @@ Specifies whether assing the DNS zone contributor role to the cluster service pr
 ### Parameter: `enableKeyvaultSecretsProvider`
 
 Specifies whether the KeyvaultSecretsProvider add-on is enabled or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1827,7 +1781,6 @@ Specifies whether the KeyvaultSecretsProvider add-on is enabled or not.
 ### Parameter: `enableOidcIssuerProfile`
 
 Whether the The OIDC issuer profile of the Managed Cluster is enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1835,7 +1788,6 @@ Whether the The OIDC issuer profile of the Managed Cluster is enabled.
 ### Parameter: `enablePodSecurityPolicy`
 
 Whether to enable Kubernetes pod security policy. Requires enabling the pod security policy feature flag on the subscription.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1843,7 +1795,6 @@ Whether to enable Kubernetes pod security policy. Requires enabling the pod secu
 ### Parameter: `enablePrivateCluster`
 
 Specifies whether to create the cluster as a private cluster or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1851,7 +1802,6 @@ Specifies whether to create the cluster as a private cluster or not.
 ### Parameter: `enablePrivateClusterPublicFQDN`
 
 Whether to create additional public FQDN for private cluster or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1859,7 +1809,6 @@ Whether to create additional public FQDN for private cluster or not.
 ### Parameter: `enableRBAC`
 
 Whether to enable Kubernetes Role-Based Access Control.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -1867,7 +1816,6 @@ Whether to enable Kubernetes Role-Based Access Control.
 ### Parameter: `enableSecretRotation`
 
 Specifies whether the KeyvaultSecretsProvider add-on uses secret rotation.
-
 - Required: No
 - Type: string
 - Default: `'false'`
@@ -1882,7 +1830,6 @@ Specifies whether the KeyvaultSecretsProvider add-on uses secret rotation.
 ### Parameter: `enableStorageProfileBlobCSIDriver`
 
 Whether the AzureBlob CSI Driver for the storage profile is enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1890,7 +1837,6 @@ Whether the AzureBlob CSI Driver for the storage profile is enabled.
 ### Parameter: `enableStorageProfileDiskCSIDriver`
 
 Whether the AzureDisk CSI Driver for the storage profile is enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1898,7 +1844,6 @@ Whether the AzureDisk CSI Driver for the storage profile is enabled.
 ### Parameter: `enableStorageProfileFileCSIDriver`
 
 Whether the AzureFile CSI Driver for the storage profile is enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1906,7 +1851,6 @@ Whether the AzureFile CSI Driver for the storage profile is enabled.
 ### Parameter: `enableStorageProfileSnapshotController`
 
 Whether the snapshot controller for the storage profile is enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1914,7 +1858,6 @@ Whether the snapshot controller for the storage profile is enabled.
 ### Parameter: `enableWorkloadIdentity`
 
 Whether to enable Workload Identity. Requires OIDC issuer profile to be enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1922,7 +1865,6 @@ Whether to enable Workload Identity. Requires OIDC issuer profile to be enabled.
 ### Parameter: `fluxConfigurationProtectedSettings`
 
 Configuration settings that are sensitive, as name-value pairs for configuring this extension.
-
 - Required: No
 - Type: secureObject
 - Default: `{}`
@@ -1930,7 +1872,6 @@ Configuration settings that are sensitive, as name-value pairs for configuring t
 ### Parameter: `fluxExtension`
 
 Settings and configurations for the flux extension.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -1938,7 +1879,6 @@ Settings and configurations for the flux extension.
 ### Parameter: `httpApplicationRoutingEnabled`
 
 Specifies whether the httpApplicationRouting add-on is enabled or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1946,7 +1886,6 @@ Specifies whether the httpApplicationRouting add-on is enabled or not.
 ### Parameter: `httpProxyConfig`
 
 Configurations for provisioning the cluster with HTTP proxy servers.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -1954,7 +1893,6 @@ Configurations for provisioning the cluster with HTTP proxy servers.
 ### Parameter: `identityProfile`
 
 Identities associated with the cluster.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -1962,7 +1900,6 @@ Identities associated with the cluster.
 ### Parameter: `ingressApplicationGatewayEnabled`
 
 Specifies whether the ingressApplicationGateway (AGIC) add-on is enabled or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1970,7 +1907,6 @@ Specifies whether the ingressApplicationGateway (AGIC) add-on is enabled or not.
 ### Parameter: `kubeDashboardEnabled`
 
 Specifies whether the kubeDashboard add-on is enabled or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1978,7 +1914,6 @@ Specifies whether the kubeDashboard add-on is enabled or not.
 ### Parameter: `kubernetesVersion`
 
 Version of Kubernetes specified when creating the managed cluster.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1986,7 +1921,6 @@ Version of Kubernetes specified when creating the managed cluster.
 ### Parameter: `loadBalancerSku`
 
 Specifies the sku of the load balancer used by the virtual machine scale sets used by nodepools.
-
 - Required: No
 - Type: string
 - Default: `'standard'`
@@ -2001,7 +1935,6 @@ Specifies the sku of the load balancer used by the virtual machine scale sets us
 ### Parameter: `location`
 
 Specifies the location of AKS cluster. It picks up Resource Group's location by default.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
@@ -2009,35 +1942,26 @@ Specifies the location of AKS cluster. It picks up Resource Group's location by 
 ### Parameter: `lock`
 
 The lock settings of the service.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`kind`](#parameter-lockkind) | string | Specify the type of lock. |
-| [`name`](#parameter-lockname) | string | Specify the name of lock. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`kind`](#parameter-lockkind) | No | string | Optional. Specify the type of lock. |
+| [`name`](#parameter-lockname) | No | string | Optional. Specify the name of lock. |
 
 ### Parameter: `lock.kind`
 
-Specify the type of lock.
+Optional. Specify the type of lock.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'CanNotDelete'
-    'None'
-    'ReadOnly'
-  ]
-  ```
+- Allowed: `[CanNotDelete, None, ReadOnly]`
 
 ### Parameter: `lock.name`
 
-Specify the name of lock.
+Optional. Specify the name of lock.
 
 - Required: No
 - Type: string
@@ -2045,27 +1969,25 @@ Specify the name of lock.
 ### Parameter: `managedIdentities`
 
 The managed identity definition for this resource. Only one type of identity is supported: system-assigned or user-assigned, but not both.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`systemAssigned`](#parameter-managedidentitiessystemassigned) | bool | Enables system assigned managed identity on the resource. |
-| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | array | The resource ID(s) to assign to the resource. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`systemAssigned`](#parameter-managedidentitiessystemassigned) | No | bool | Optional. Enables system assigned managed identity on the resource. |
+| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | No | array | Optional. The resource ID(s) to assign to the resource. |
 
 ### Parameter: `managedIdentities.systemAssigned`
 
-Enables system assigned managed identity on the resource.
+Optional. Enables system assigned managed identity on the resource.
 
 - Required: No
 - Type: bool
 
 ### Parameter: `managedIdentities.userAssignedResourceIds`
 
-The resource ID(s) to assign to the resource.
+Optional. The resource ID(s) to assign to the resource.
 
 - Required: No
 - Type: array
@@ -2073,7 +1995,6 @@ The resource ID(s) to assign to the resource.
 ### Parameter: `managedOutboundIPCount`
 
 Outbound IP Count for the Load balancer.
-
 - Required: No
 - Type: int
 - Default: `0`
@@ -2081,15 +2002,19 @@ Outbound IP Count for the Load balancer.
 ### Parameter: `monitoringWorkspaceId`
 
 Resource ID of the monitoring log analytics workspace.
-
 - Required: No
 - Type: string
 - Default: `''`
 
+### Parameter: `name`
+
+Specifies the name of the AKS cluster.
+- Required: Yes
+- Type: string
+
 ### Parameter: `networkDataplane`
 
 Network dataplane used in the Kubernetes cluster. Not compatible with kubenet network plugin.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2105,7 +2030,6 @@ Network dataplane used in the Kubernetes cluster. Not compatible with kubenet ne
 ### Parameter: `networkPlugin`
 
 Specifies the network plugin used for building Kubernetes network.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2121,7 +2045,6 @@ Specifies the network plugin used for building Kubernetes network.
 ### Parameter: `networkPluginMode`
 
 Network plugin mode used for building the Kubernetes network. Not compatible with kubenet network plugin.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2136,7 +2059,6 @@ Network plugin mode used for building the Kubernetes network. Not compatible wit
 ### Parameter: `networkPolicy`
 
 Specifies the network policy used for building Kubernetes network. - calico or azure.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2152,7 +2074,6 @@ Specifies the network policy used for building Kubernetes network. - calico or a
 ### Parameter: `nodeResourceGroup`
 
 Name of the resource group containing agent pool nodes.
-
 - Required: No
 - Type: string
 - Default: `[format('{0}_aks_{1}_nodes', resourceGroup().name, parameters('name'))]`
@@ -2160,7 +2081,6 @@ Name of the resource group containing agent pool nodes.
 ### Parameter: `omsAgentEnabled`
 
 Specifies whether the OMS agent is enabled.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -2168,7 +2088,6 @@ Specifies whether the OMS agent is enabled.
 ### Parameter: `openServiceMeshEnabled`
 
 Specifies whether the openServiceMesh add-on is enabled or not.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -2176,7 +2095,6 @@ Specifies whether the openServiceMesh add-on is enabled or not.
 ### Parameter: `outboundType`
 
 Specifies outbound (egress) routing method. - loadBalancer or userDefinedRouting.
-
 - Required: No
 - Type: string
 - Default: `'loadBalancer'`
@@ -2191,7 +2109,6 @@ Specifies outbound (egress) routing method. - loadBalancer or userDefinedRouting
 ### Parameter: `podCidr`
 
 Specifies the CIDR notation IP range from which to assign pod IPs when kubenet is used.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2199,7 +2116,6 @@ Specifies the CIDR notation IP range from which to assign pod IPs when kubenet i
 ### Parameter: `podIdentityProfileAllowNetworkPluginKubenet`
 
 Running in Kubenet is disabled by default due to the security related nature of AAD Pod Identity and the risks of IP spoofing.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -2207,7 +2123,6 @@ Running in Kubenet is disabled by default due to the security related nature of 
 ### Parameter: `podIdentityProfileEnable`
 
 Whether the pod identity addon is enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -2215,7 +2130,6 @@ Whether the pod identity addon is enabled.
 ### Parameter: `podIdentityProfileUserAssignedIdentities`
 
 The pod identities to use in the cluster.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -2223,15 +2137,19 @@ The pod identities to use in the cluster.
 ### Parameter: `podIdentityProfileUserAssignedIdentityExceptions`
 
 The pod identity exceptions to allow.
-
 - Required: No
 - Type: array
 - Default: `[]`
 
+### Parameter: `primaryAgentPoolProfile`
+
+Properties of the primary agent pool.
+- Required: Yes
+- Type: array
+
 ### Parameter: `privateDNSZone`
 
 Private DNS Zone configuration. Set to 'system' and AKS will create a private DNS zone in the node resource group. Set to '' to disable private DNS Zone creation and use public DNS. Supply the resource ID here of an existing Private DNS zone to use an existing zone.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2239,96 +2157,74 @@ Private DNS Zone configuration. Set to 'system' and AKS will create a private DN
 ### Parameter: `roleAssignments`
 
 Array of role assignments to create.
-
 - Required: No
 - Type: array
 
-**Required parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`principalId`](#parameter-roleassignmentsprincipalid) | string | The principal ID of the principal (user/group/identity) to assign the role to. |
-| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | string | The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`condition`](#parameter-roleassignmentscondition) | string | The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
-| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | string | Version of the condition. |
-| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | string | The Resource Id of the delegated managed identity resource. |
-| [`description`](#parameter-roleassignmentsdescription) | string | The description of the role assignment. |
-| [`principalType`](#parameter-roleassignmentsprincipaltype) | string | The principal type of the assigned principal ID. |
-
-### Parameter: `roleAssignments.principalId`
-
-The principal ID of the principal (user/group/identity) to assign the role to.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `roleAssignments.roleDefinitionIdOrName`
-
-The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
-- Required: Yes
-- Type: string
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`condition`](#parameter-roleassignmentscondition) | No | string | Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
+| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | No | string | Optional. Version of the condition. |
+| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | No | string | Optional. The Resource Id of the delegated managed identity resource. |
+| [`description`](#parameter-roleassignmentsdescription) | No | string | Optional. The description of the role assignment. |
+| [`principalId`](#parameter-roleassignmentsprincipalid) | Yes | string | Required. The principal ID of the principal (user/group/identity) to assign the role to. |
+| [`principalType`](#parameter-roleassignmentsprincipaltype) | No | string | Optional. The principal type of the assigned principal ID. |
+| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | Yes | string | Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
 
 ### Parameter: `roleAssignments.condition`
 
-The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
+Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.conditionVersion`
 
-Version of the condition.
+Optional. Version of the condition.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    '2.0'
-  ]
-  ```
+- Allowed: `[2.0]`
 
 ### Parameter: `roleAssignments.delegatedManagedIdentityResourceId`
 
-The Resource Id of the delegated managed identity resource.
+Optional. The Resource Id of the delegated managed identity resource.
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.description`
 
-The description of the role assignment.
+Optional. The description of the role assignment.
 
 - Required: No
+- Type: string
+
+### Parameter: `roleAssignments.principalId`
+
+Required. The principal ID of the principal (user/group/identity) to assign the role to.
+
+- Required: Yes
 - Type: string
 
 ### Parameter: `roleAssignments.principalType`
 
-The principal type of the assigned principal ID.
+Optional. The principal type of the assigned principal ID.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'Device'
-    'ForeignGroup'
-    'Group'
-    'ServicePrincipal'
-    'User'
-  ]
-  ```
+- Allowed: `[Device, ForeignGroup, Group, ServicePrincipal, User]`
+
+### Parameter: `roleAssignments.roleDefinitionIdOrName`
+
+Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
+
+- Required: Yes
+- Type: string
 
 ### Parameter: `serviceCidr`
 
 A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP ranges.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2336,7 +2232,6 @@ A CIDR notation IP range from which to assign service cluster IPs. It must not o
 ### Parameter: `skuTier`
 
 Tier of a managed cluster SKU. - Free or Standard.
-
 - Required: No
 - Type: string
 - Default: `'Free'`
@@ -2352,7 +2247,6 @@ Tier of a managed cluster SKU. - Free or Standard.
 ### Parameter: `sshPublicKey`
 
 Specifies the SSH RSA public key string for the Linux nodes.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -2360,7 +2254,6 @@ Specifies the SSH RSA public key string for the Linux nodes.
 ### Parameter: `supportPlan`
 
 The support plan for the Managed Cluster.
-
 - Required: No
 - Type: string
 - Default: `'KubernetesOfficial'`
@@ -2375,14 +2268,12 @@ The support plan for the Managed Cluster.
 ### Parameter: `tags`
 
 Tags of the resource.
-
 - Required: No
 - Type: object
 
 ### Parameter: `webApplicationRoutingEnabled`
 
 Specifies whether the webApplicationRoutingEnabled add-on is enabled or not.
-
 - Required: No
 - Type: bool
 - Default: `False`

@@ -41,21 +41,12 @@ This module deploys a Custom Function App into a Static Web App Site using the L
 ### Parameter: `backendResourceId`
 
 The resource ID of the backend linked to the static site.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `staticSiteName`
-
-The name of the parent Static Web App. Required if the template is used in a standalone deployment.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -63,7 +54,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
@@ -71,7 +61,6 @@ Location for all resources.
 ### Parameter: `name`
 
 Name of the backend to link to the static site.
-
 - Required: No
 - Type: string
 - Default: `[uniqueString(parameters('backendResourceId'))]`
@@ -79,10 +68,15 @@ Name of the backend to link to the static site.
 ### Parameter: `region`
 
 The region of the backend linked to the static site.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
+
+### Parameter: `staticSiteName`
+
+The name of the parent Static Web App. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
 
 
 ## Outputs

@@ -47,24 +47,9 @@ This module deploys a Storage Account Blob Container.
 | [`publicAccess`](#parameter-publicaccess) | string | Specifies whether data in the container may be accessed publicly and the level of access. |
 | [`roleAssignments`](#parameter-roleassignments) | array | Array of role assignments to create. |
 
-### Parameter: `name`
-
-The name of the storage container to deploy.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `storageAccountName`
-
-The name of the parent Storage Account. Required if the template is used in a standalone deployment.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `defaultEncryptionScope`
 
 Default the container to use specified encryption scope for all writes.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -72,7 +57,6 @@ Default the container to use specified encryption scope for all writes.
 ### Parameter: `denyEncryptionScopeOverride`
 
 Block override of encryption scope from the container default.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -80,7 +64,6 @@ Block override of encryption scope from the container default.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -88,7 +71,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `enableNfsV3AllSquash`
 
 Enable NFSv3 all squash on blob container.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -96,7 +78,6 @@ Enable NFSv3 all squash on blob container.
 ### Parameter: `enableNfsV3RootSquash`
 
 Enable NFSv3 root squash on blob container.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -104,7 +85,6 @@ Enable NFSv3 root squash on blob container.
 ### Parameter: `immutabilityPolicyName`
 
 Name of the immutable policy.
-
 - Required: No
 - Type: string
 - Default: `'default'`
@@ -112,7 +92,6 @@ Name of the immutable policy.
 ### Parameter: `immutabilityPolicyProperties`
 
 Configure immutability policy.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -120,7 +99,6 @@ Configure immutability policy.
 ### Parameter: `immutableStorageWithVersioningEnabled`
 
 This is an immutable property, when set to true it enables object level immutability at the container level. The property is immutable and can only be set to true at the container creation time. Existing containers must undergo a migration process.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -128,15 +106,19 @@ This is an immutable property, when set to true it enables object level immutabi
 ### Parameter: `metadata`
 
 A name-value pair to associate with the container as metadata.
-
 - Required: No
 - Type: object
 - Default: `{}`
 
+### Parameter: `name`
+
+The name of the storage container to deploy.
+- Required: Yes
+- Type: string
+
 ### Parameter: `publicAccess`
 
 Specifies whether data in the container may be accessed publicly and the level of access.
-
 - Required: No
 - Type: string
 - Default: `'None'`
@@ -152,91 +134,76 @@ Specifies whether data in the container may be accessed publicly and the level o
 ### Parameter: `roleAssignments`
 
 Array of role assignments to create.
-
 - Required: No
 - Type: array
 
-**Required parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`principalId`](#parameter-roleassignmentsprincipalid) | string | The principal ID of the principal (user/group/identity) to assign the role to. |
-| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | string | The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`condition`](#parameter-roleassignmentscondition) | string | The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
-| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | string | Version of the condition. |
-| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | string | The Resource Id of the delegated managed identity resource. |
-| [`description`](#parameter-roleassignmentsdescription) | string | The description of the role assignment. |
-| [`principalType`](#parameter-roleassignmentsprincipaltype) | string | The principal type of the assigned principal ID. |
-
-### Parameter: `roleAssignments.principalId`
-
-The principal ID of the principal (user/group/identity) to assign the role to.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `roleAssignments.roleDefinitionIdOrName`
-
-The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
-- Required: Yes
-- Type: string
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`condition`](#parameter-roleassignmentscondition) | No | string | Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
+| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | No | string | Optional. Version of the condition. |
+| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | No | string | Optional. The Resource Id of the delegated managed identity resource. |
+| [`description`](#parameter-roleassignmentsdescription) | No | string | Optional. The description of the role assignment. |
+| [`principalId`](#parameter-roleassignmentsprincipalid) | Yes | string | Required. The principal ID of the principal (user/group/identity) to assign the role to. |
+| [`principalType`](#parameter-roleassignmentsprincipaltype) | No | string | Optional. The principal type of the assigned principal ID. |
+| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | Yes | string | Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
 
 ### Parameter: `roleAssignments.condition`
 
-The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
+Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.conditionVersion`
 
-Version of the condition.
+Optional. Version of the condition.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    '2.0'
-  ]
-  ```
+- Allowed: `[2.0]`
 
 ### Parameter: `roleAssignments.delegatedManagedIdentityResourceId`
 
-The Resource Id of the delegated managed identity resource.
+Optional. The Resource Id of the delegated managed identity resource.
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.description`
 
-The description of the role assignment.
+Optional. The description of the role assignment.
 
 - Required: No
+- Type: string
+
+### Parameter: `roleAssignments.principalId`
+
+Required. The principal ID of the principal (user/group/identity) to assign the role to.
+
+- Required: Yes
 - Type: string
 
 ### Parameter: `roleAssignments.principalType`
 
-The principal type of the assigned principal ID.
+Optional. The principal type of the assigned principal ID.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'Device'
-    'ForeignGroup'
-    'Group'
-    'ServicePrincipal'
-    'User'
-  ]
-  ```
+- Allowed: `[Device, ForeignGroup, Group, ServicePrincipal, User]`
+
+### Parameter: `roleAssignments.roleDefinitionIdOrName`
+
+Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `storageAccountName`
+
+The name of the parent Storage Account. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
 
 
 ## Outputs

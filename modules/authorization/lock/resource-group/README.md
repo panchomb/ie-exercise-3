@@ -31,10 +31,16 @@ This module deploys an Authorization Lock at a Resource Group scope.
 | [`name`](#parameter-name) | string | The name of the lock. |
 | [`notes`](#parameter-notes) | string | The decription attached to the lock. |
 
+### Parameter: `enableDefaultTelemetry`
+
+Enable telemetry via a Globally Unique Identifier (GUID).
+- Required: No
+- Type: bool
+- Default: `True`
+
 ### Parameter: `level`
 
 Set lock level.
-
 - Required: Yes
 - Type: string
 - Allowed:
@@ -45,18 +51,9 @@ Set lock level.
   ]
   ```
 
-### Parameter: `enableDefaultTelemetry`
-
-Enable telemetry via a Globally Unique Identifier (GUID).
-
-- Required: No
-- Type: bool
-- Default: `True`
-
 ### Parameter: `name`
 
 The name of the lock.
-
 - Required: No
 - Type: string
 - Default: `[format('{0}-lock', parameters('level'))]`
@@ -64,7 +61,6 @@ The name of the lock.
 ### Parameter: `notes`
 
 The decription attached to the lock.
-
 - Required: No
 - Type: string
 - Default: `[if(equals(parameters('level'), 'CanNotDelete'), 'Cannot delete resource or child resources.', 'Cannot modify the resource or child resources.')]`

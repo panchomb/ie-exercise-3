@@ -38,25 +38,9 @@ This module deploys a Digital Twins Instance EventHub Endpoint.
 | [`managedIdentities`](#parameter-managedidentities) | object | The managed identity definition for this resource. |
 | [`name`](#parameter-name) | string | The name of the Digital Twin Endpoint. |
 
-### Parameter: `connectionStringPrimaryKey`
-
-PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read. Required if the `authenticationType` is "KeyBased".
-
-- Required: No
-- Type: securestring
-- Default: `''`
-
-### Parameter: `digitalTwinInstanceName`
-
-The name of the parent Digital Twin Instance resource. Required if the template is used in a standalone deployment.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `authenticationType`
 
 Specifies the authentication type being used for connecting to the endpoint. If 'KeyBased' is selected, a connection string must be specified (at least the primary connection string). If 'IdentityBased' is selected, the endpointUri and entityPath properties must be specified.
-
 - Required: No
 - Type: string
 - Default: `'IdentityBased'`
@@ -68,10 +52,16 @@ Specifies the authentication type being used for connecting to the endpoint. If 
   ]
   ```
 
+### Parameter: `connectionStringPrimaryKey`
+
+PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read. Required if the `authenticationType` is "KeyBased".
+- Required: No
+- Type: securestring
+- Default: `''`
+
 ### Parameter: `connectionStringSecondaryKey`
 
 SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read. Only used if the `authenticationType` is "KeyBased".
-
 - Required: No
 - Type: securestring
 - Default: `''`
@@ -79,7 +69,6 @@ SecondaryConnectionString of the endpoint for key-based authentication. Will be 
 ### Parameter: `deadLetterSecret`
 
 Dead letter storage secret for key-based authentication. Will be obfuscated during read.
-
 - Required: No
 - Type: securestring
 - Default: `''`
@@ -87,15 +76,19 @@ Dead letter storage secret for key-based authentication. Will be obfuscated duri
 ### Parameter: `deadLetterUri`
 
 Dead letter storage URL for identity-based authentication.
-
 - Required: No
 - Type: string
 - Default: `''`
 
+### Parameter: `digitalTwinInstanceName`
+
+The name of the parent Digital Twin Instance resource. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
+
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via the Customer Usage Attribution ID (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -103,7 +96,6 @@ Enable telemetry via the Customer Usage Attribution ID (GUID).
 ### Parameter: `endpointUri`
 
 The URL of the EventHub namespace for identity-based authentication. It must include the protocol 'sb://' (i.e. sb://xyz.servicebus.windows.net).
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -111,7 +103,6 @@ The URL of the EventHub namespace for identity-based authentication. It must inc
 ### Parameter: `entityPath`
 
 The EventHub name in the EventHub namespace for identity-based authentication.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -119,27 +110,25 @@ The EventHub name in the EventHub namespace for identity-based authentication.
 ### Parameter: `managedIdentities`
 
 The managed identity definition for this resource.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`systemAssigned`](#parameter-managedidentitiessystemassigned) | bool | Enables system assigned managed identity on the resource. |
-| [`userAssignedResourceId`](#parameter-managedidentitiesuserassignedresourceid) | string | The resource ID to assign to the resource. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`systemAssigned`](#parameter-managedidentitiessystemassigned) | No | bool | Optional. Enables system assigned managed identity on the resource. |
+| [`userAssignedResourceId`](#parameter-managedidentitiesuserassignedresourceid) | No | string | Optional. The resource ID to assign to the resource. |
 
 ### Parameter: `managedIdentities.systemAssigned`
 
-Enables system assigned managed identity on the resource.
+Optional. Enables system assigned managed identity on the resource.
 
 - Required: No
 - Type: bool
 
 ### Parameter: `managedIdentities.userAssignedResourceId`
 
-The resource ID to assign to the resource.
+Optional. The resource ID to assign to the resource.
 
 - Required: No
 - Type: string
@@ -147,7 +136,6 @@ The resource ID to assign to the resource.
 ### Parameter: `name`
 
 The name of the Digital Twin Endpoint.
-
 - Required: No
 - Type: string
 - Default: `'EventHubEndpoint'`

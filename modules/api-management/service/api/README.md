@@ -57,46 +57,22 @@ This module deploys an API Management Service API.
 | [`value`](#parameter-value) | string | Content value when Importing an API. |
 | [`wsdlSelector`](#parameter-wsdlselector) | object | Criteria to limit import of WSDL to a subset of the document. |
 
-### Parameter: `displayName`
-
-API name. Must be 1 to 300 characters long.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `name`
-
-API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `path`
-
-Relative URL uniquely identifying this API and all of its resource paths within the API Management service instance. It is appended to the API endpoint base URL specified during the service instance creation to form a public URL for this API.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `apiManagementServiceName`
-
-The name of the parent API Management service. Required if the template is used in a standalone deployment.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `apiDescription`
 
 Description of the API. May include HTML formatting tags.
-
 - Required: No
 - Type: string
 - Default: `''`
 
+### Parameter: `apiManagementServiceName`
+
+The name of the parent API Management service. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
+
 ### Parameter: `apiRevision`
 
 Describes the Revision of the API. If no value is provided, default revision 1 is created.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -104,7 +80,6 @@ Describes the Revision of the API. If no value is provided, default revision 1 i
 ### Parameter: `apiRevisionDescription`
 
 Description of the API Revision.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -112,7 +87,6 @@ Description of the API Revision.
 ### Parameter: `apiType`
 
 Type of API to create. * http creates a REST API * soap creates a SOAP pass-through API * websocket creates websocket API * graphql creates GraphQL API.
-
 - Required: No
 - Type: string
 - Default: `'http'`
@@ -129,7 +103,6 @@ Type of API to create. * http creates a REST API * soap creates a SOAP pass-thro
 ### Parameter: `apiVersion`
 
 Indicates the Version identifier of the API if the API is versioned.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -137,7 +110,6 @@ Indicates the Version identifier of the API if the API is versioned.
 ### Parameter: `apiVersionDescription`
 
 Description of the API Version.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -145,7 +117,6 @@ Description of the API Version.
 ### Parameter: `apiVersionSetId`
 
 Indicates the Version identifier of the API version set.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -153,15 +124,19 @@ Indicates the Version identifier of the API version set.
 ### Parameter: `authenticationSettings`
 
 Collection of authentication settings included into this API.
-
 - Required: No
 - Type: object
 - Default: `{}`
 
+### Parameter: `displayName`
+
+API name. Must be 1 to 300 characters long.
+- Required: Yes
+- Type: string
+
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -169,7 +144,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `format`
 
 Format of the Content in which the API is getting imported.
-
 - Required: No
 - Type: string
 - Default: `'openapi'`
@@ -192,15 +166,25 @@ Format of the Content in which the API is getting imported.
 ### Parameter: `isCurrent`
 
 Indicates if API revision is current API revision.
-
 - Required: No
 - Type: bool
 - Default: `True`
 
+### Parameter: `name`
+
+API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number.
+- Required: Yes
+- Type: string
+
+### Parameter: `path`
+
+Relative URL uniquely identifying this API and all of its resource paths within the API Management service instance. It is appended to the API endpoint base URL specified during the service instance creation to form a public URL for this API.
+- Required: Yes
+- Type: string
+
 ### Parameter: `policies`
 
 Array of Policies to apply to the Service API.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -208,7 +192,6 @@ Array of Policies to apply to the Service API.
 ### Parameter: `protocols`
 
 Describes on which protocols the operations in this API can be invoked. - HTTP or HTTPS.
-
 - Required: No
 - Type: array
 - Default:
@@ -221,7 +204,6 @@ Describes on which protocols the operations in this API can be invoked. - HTTP o
 ### Parameter: `serviceUrl`
 
 Absolute URL of the backend service implementing this API. Cannot be more than 2000 characters long.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -229,7 +211,6 @@ Absolute URL of the backend service implementing this API. Cannot be more than 2
 ### Parameter: `sourceApiId`
 
 API identifier of the source API.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -237,7 +218,6 @@ API identifier of the source API.
 ### Parameter: `subscriptionKeyParameterNames`
 
 Protocols over which API is made available.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -245,7 +225,6 @@ Protocols over which API is made available.
 ### Parameter: `subscriptionRequired`
 
 Specifies whether an API or Product subscription is required for accessing the API.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -253,7 +232,6 @@ Specifies whether an API or Product subscription is required for accessing the A
 ### Parameter: `type`
 
 Type of API.
-
 - Required: No
 - Type: string
 - Default: `'http'`
@@ -270,7 +248,6 @@ Type of API.
 ### Parameter: `value`
 
 Content value when Importing an API.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -278,7 +255,6 @@ Content value when Importing an API.
 ### Parameter: `wsdlSelector`
 
 Criteria to limit import of WSDL to a subset of the document.
-
 - Required: No
 - Type: object
 - Default: `{}`

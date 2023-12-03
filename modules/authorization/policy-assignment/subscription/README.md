@@ -45,24 +45,9 @@ This module deploys a Policy Assignment at a Subscription scope.
 | [`subscriptionId`](#parameter-subscriptionid) | string | The Target Scope for the Policy. The subscription ID of the subscription for the policy assignment. If not provided, will use the current scope for deployment. |
 | [`userAssignedIdentityId`](#parameter-userassignedidentityid) | string | The Resource ID for the user assigned identity to assign to the policy assignment. |
 
-### Parameter: `name`
-
-Specifies the name of the policy assignment. Maximum length is 64 characters for subscription scope.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `policyDefinitionId`
-
-Specifies the ID of the policy definition or policy set definition being assigned.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `description`
 
 This message will be part of response in case of policy violation.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -70,7 +55,6 @@ This message will be part of response in case of policy violation.
 ### Parameter: `displayName`
 
 The display name of the policy assignment. Maximum length is 128 characters.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -78,7 +62,6 @@ The display name of the policy assignment. Maximum length is 128 characters.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -86,7 +69,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `enforcementMode`
 
 The policy assignment enforcement mode. Possible values are Default and DoNotEnforce. - Default or DoNotEnforce.
-
 - Required: No
 - Type: string
 - Default: `'Default'`
@@ -101,7 +83,6 @@ The policy assignment enforcement mode. Possible values are Default and DoNotEnf
 ### Parameter: `identity`
 
 The managed identity associated with the policy assignment. Policy assignments must include a resource identity when assigning 'Modify' policy definitions.
-
 - Required: No
 - Type: string
 - Default: `'SystemAssigned'`
@@ -117,7 +98,6 @@ The managed identity associated with the policy assignment. Policy assignments m
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `[deployment().location]`
@@ -125,15 +105,19 @@ Location for all resources.
 ### Parameter: `metadata`
 
 The policy assignment metadata. Metadata is an open ended object and is typically a collection of key-value pairs.
-
 - Required: No
 - Type: object
 - Default: `{}`
 
+### Parameter: `name`
+
+Specifies the name of the policy assignment. Maximum length is 64 characters for subscription scope.
+- Required: Yes
+- Type: string
+
 ### Parameter: `nonComplianceMessages`
 
 The messages that describe why a resource is non-compliant with the policy.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -141,7 +125,6 @@ The messages that describe why a resource is non-compliant with the policy.
 ### Parameter: `notScopes`
 
 The policy excluded scopes.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -149,7 +132,6 @@ The policy excluded scopes.
 ### Parameter: `overrides`
 
 The policy property value override. Allows changing the effect of a policy definition without modifying the underlying policy definition or using a parameterized effect in the policy definition.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -157,15 +139,19 @@ The policy property value override. Allows changing the effect of a policy defin
 ### Parameter: `parameters`
 
 Parameters for the policy assignment if needed.
-
 - Required: No
 - Type: object
 - Default: `{}`
 
+### Parameter: `policyDefinitionId`
+
+Specifies the ID of the policy definition or policy set definition being assigned.
+- Required: Yes
+- Type: string
+
 ### Parameter: `resourceSelectors`
 
 The resource selector list to filter policies by resource properties. Facilitates safe deployment practices (SDP) by enabling gradual roll out policy assignments based on factors like resource location, resource type, or whether a resource has a location.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -173,7 +159,6 @@ The resource selector list to filter policies by resource properties. Facilitate
 ### Parameter: `roleDefinitionIds`
 
 The IDs Of the Azure Role Definition list that is used to assign permissions to the identity. You need to provide either the fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.. See https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles for the list IDs for built-in Roles. They must match on what is on the policy definition.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -181,7 +166,6 @@ The IDs Of the Azure Role Definition list that is used to assign permissions to 
 ### Parameter: `subscriptionId`
 
 The Target Scope for the Policy. The subscription ID of the subscription for the policy assignment. If not provided, will use the current scope for deployment.
-
 - Required: No
 - Type: string
 - Default: `[subscription().subscriptionId]`
@@ -189,7 +173,6 @@ The Target Scope for the Policy. The subscription ID of the subscription for the
 ### Parameter: `userAssignedIdentityId`
 
 The Resource ID for the user assigned identity to assign to the policy assignment.
-
 - Required: No
 - Type: string
 - Default: `''`

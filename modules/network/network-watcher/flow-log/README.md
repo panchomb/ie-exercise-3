@@ -40,24 +40,9 @@ This module controls the Network Security Group Flow Logs and analytics settings
 | [`trafficAnalyticsInterval`](#parameter-trafficanalyticsinterval) | int | The interval in minutes which would decide how frequently TA service should do flow analytics. |
 | [`workspaceResourceId`](#parameter-workspaceresourceid) | string | Specify the Log Analytics Workspace Resource ID. |
 
-### Parameter: `storageId`
-
-Resource ID of the diagnostic storage account.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `targetResourceId`
-
-Resource ID of the NSG that must be enabled for Flow Logs.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `enabled`
 
 If the flow log should be enabled.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -65,7 +50,6 @@ If the flow log should be enabled.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -73,7 +57,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `formatVersion`
 
 The flow log format version.
-
 - Required: No
 - Type: int
 - Default: `2`
@@ -88,7 +71,6 @@ The flow log format version.
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
@@ -96,7 +78,6 @@ Location for all resources.
 ### Parameter: `name`
 
 Name of the resource.
-
 - Required: No
 - Type: string
 - Default: `[format('{0}-{1}-flowlog', last(split(parameters('targetResourceId'), '/')), split(parameters('targetResourceId'), '/')[4])]`
@@ -104,7 +85,6 @@ Name of the resource.
 ### Parameter: `networkWatcherName`
 
 Name of the network watcher resource. Must be in the resource group where the Flow log will be created and same region as the NSG.
-
 - Required: No
 - Type: string
 - Default: `[format('NetworkWatcher_{0}', resourceGroup().location)]`
@@ -112,22 +92,31 @@ Name of the network watcher resource. Must be in the resource group where the Fl
 ### Parameter: `retentionInDays`
 
 Specifies the number of days that logs will be kept for; a value of 0 will retain data indefinitely.
-
 - Required: No
 - Type: int
 - Default: `365`
 
+### Parameter: `storageId`
+
+Resource ID of the diagnostic storage account.
+- Required: Yes
+- Type: string
+
 ### Parameter: `tags`
 
 Tags of the resource.
-
 - Required: No
 - Type: object
+
+### Parameter: `targetResourceId`
+
+Resource ID of the NSG that must be enabled for Flow Logs.
+- Required: Yes
+- Type: string
 
 ### Parameter: `trafficAnalyticsInterval`
 
 The interval in minutes which would decide how frequently TA service should do flow analytics.
-
 - Required: No
 - Type: int
 - Default: `60`
@@ -142,7 +131,6 @@ The interval in minutes which would decide how frequently TA service should do f
 ### Parameter: `workspaceResourceId`
 
 Specify the Log Analytics Workspace Resource ID.
-
 - Required: No
 - Type: string
 - Default: `''`

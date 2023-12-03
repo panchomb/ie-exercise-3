@@ -35,17 +35,9 @@ This module deploys a Role Definition at a Management Group scope.
 | [`managementGroupId`](#parameter-managementgroupid) | string | The group ID of the Management Group where the Role Definition and Target Scope will be applied to. If not provided, will use the current scope for deployment. |
 | [`notActions`](#parameter-notactions) | array | List of denied actions. |
 
-### Parameter: `roleName`
-
-Name of the custom RBAC role to be created.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `actions`
 
 List of allowed actions.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -53,7 +45,6 @@ List of allowed actions.
 ### Parameter: `assignableScopes`
 
 Role definition assignable scopes. If not provided, will use the current scope provided.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -61,7 +52,6 @@ Role definition assignable scopes. If not provided, will use the current scope p
 ### Parameter: `description`
 
 Description of the custom RBAC role to be created.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -69,7 +59,6 @@ Description of the custom RBAC role to be created.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -77,7 +66,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `location`
 
 Location deployment metadata.
-
 - Required: No
 - Type: string
 - Default: `[deployment().location]`
@@ -85,7 +73,6 @@ Location deployment metadata.
 ### Parameter: `managementGroupId`
 
 The group ID of the Management Group where the Role Definition and Target Scope will be applied to. If not provided, will use the current scope for deployment.
-
 - Required: No
 - Type: string
 - Default: `[managementGroup().name]`
@@ -93,10 +80,15 @@ The group ID of the Management Group where the Role Definition and Target Scope 
 ### Parameter: `notActions`
 
 List of denied actions.
-
 - Required: No
 - Type: array
 - Default: `[]`
+
+### Parameter: `roleName`
+
+Name of the custom RBAC role to be created.
+- Required: Yes
+- Type: string
 
 
 ## Outputs

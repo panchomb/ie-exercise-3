@@ -30,7 +30,7 @@ module serverfarm 'modules/web/serverfarm/main.bicep' = {
   params: {
     name: appServicePlanName
     location: location
-    sku: {
+    sku: {  
       capacity: 1
       family: 'B'
       name: 'B1'

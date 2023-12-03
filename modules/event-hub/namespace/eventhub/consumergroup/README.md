@@ -37,39 +37,34 @@ This module deploys an Event Hub Namespace Event Hub Consumer Group.
 | [`enableDefaultTelemetry`](#parameter-enabledefaulttelemetry) | bool | Enable telemetry via a Globally Unique Identifier (GUID). |
 | [`userMetadata`](#parameter-usermetadata) | string | User Metadata is a placeholder to store user-defined string data with maximum length 1024. e.g. it can be used to store descriptive data, such as list of teams and their contact information also user-defined configuration settings can be stored. |
 
-### Parameter: `name`
+### Parameter: `enableDefaultTelemetry`
 
-The name of the consumer group.
-
-- Required: Yes
-- Type: string
+Enable telemetry via a Globally Unique Identifier (GUID).
+- Required: No
+- Type: bool
+- Default: `True`
 
 ### Parameter: `eventHubName`
 
 The name of the parent event hub namespace event hub. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
 
+### Parameter: `name`
+
+The name of the consumer group.
 - Required: Yes
 - Type: string
 
 ### Parameter: `namespaceName`
 
 The name of the parent event hub namespace. Required if the template is used in a standalone deployment.s.
-
 - Required: Yes
 - Type: string
-
-### Parameter: `enableDefaultTelemetry`
-
-Enable telemetry via a Globally Unique Identifier (GUID).
-
-- Required: No
-- Type: bool
-- Default: `True`
 
 ### Parameter: `userMetadata`
 
 User Metadata is a placeholder to store user-defined string data with maximum length 1024. e.g. it can be used to store descriptive data, such as list of teams and their contact information also user-defined configuration settings can be stored.
-
 - Required: No
 - Type: string
 - Default: `''`

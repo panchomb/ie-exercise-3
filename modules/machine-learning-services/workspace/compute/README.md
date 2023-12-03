@@ -48,10 +48,16 @@ Attaching a compute is not idempotent and will fail in case you try to redeploy 
 | [`sku`](#parameter-sku) | string | Specifies the sku, also referred as "edition". Required for creating a compute resource. |
 | [`tags`](#parameter-tags) | object | Contains resource tags defined as key-value pairs. Ignored when attaching a compute resource, i.e. when you provide a resource ID. |
 
+### Parameter: `computeLocation`
+
+Location for the underlying compute. Ignored when attaching a compute resource, i.e. when you provide a resource ID.
+- Required: No
+- Type: string
+- Default: `[resourceGroup().location]`
+
 ### Parameter: `computeType`
 
 Set the object type.
-
 - Required: Yes
 - Type: string
 - Allowed:
@@ -70,32 +76,9 @@ Set the object type.
   ]
   ```
 
-### Parameter: `name`
-
-Name of the compute.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `machineLearningWorkspaceName`
-
-The name of the parent Machine Learning Workspace. Required if the template is used in a standalone deployment.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `computeLocation`
-
-Location for the underlying compute. Ignored when attaching a compute resource, i.e. when you provide a resource ID.
-
-- Required: No
-- Type: string
-- Default: `[resourceGroup().location]`
-
 ### Parameter: `deployCompute`
 
 Flag to specify whether to deploy the compute. Required only for attach (i.e. providing a resource ID), as in this case the operation is not idempotent, i.e. a second deployment will fail. Therefore, this flag needs to be set to "false" as long as the compute resource exists.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -103,7 +86,6 @@ Flag to specify whether to deploy the compute. Required only for attach (i.e. pr
 ### Parameter: `description`
 
 The description of the Machine Learning compute.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -111,7 +93,6 @@ The description of the Machine Learning compute.
 ### Parameter: `disableLocalAuth`
 
 Opt-out of local authentication and ensure customers can use only MSI and AAD exclusively for authentication.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -119,7 +100,6 @@ Opt-out of local authentication and ensure customers can use only MSI and AAD ex
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -127,43 +107,51 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `location`
 
 Specifies the location of the resource.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
 
+### Parameter: `machineLearningWorkspaceName`
+
+The name of the parent Machine Learning Workspace. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
+
 ### Parameter: `managedIdentities`
 
 The managed identity definition for this resource.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`systemAssigned`](#parameter-managedidentitiessystemassigned) | bool | Enables system assigned managed identity on the resource. |
-| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | array | The resource ID(s) to assign to the resource. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`systemAssigned`](#parameter-managedidentitiessystemassigned) | No | bool | Optional. Enables system assigned managed identity on the resource. |
+| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | No | array | Optional. The resource ID(s) to assign to the resource. |
 
 ### Parameter: `managedIdentities.systemAssigned`
 
-Enables system assigned managed identity on the resource.
+Optional. Enables system assigned managed identity on the resource.
 
 - Required: No
 - Type: bool
 
 ### Parameter: `managedIdentities.userAssignedResourceIds`
 
-The resource ID(s) to assign to the resource.
+Optional. The resource ID(s) to assign to the resource.
 
 - Required: No
 - Type: array
 
+### Parameter: `name`
+
+Name of the compute.
+- Required: Yes
+- Type: string
+
 ### Parameter: `properties`
 
 The properties of the compute. Will be ignored in case "resourceId" is set.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -171,7 +159,6 @@ The properties of the compute. Will be ignored in case "resourceId" is set.
 ### Parameter: `resourceId`
 
 ARM resource ID of the underlying compute.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -179,7 +166,6 @@ ARM resource ID of the underlying compute.
 ### Parameter: `sku`
 
 Specifies the sku, also referred as "edition". Required for creating a compute resource.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -197,7 +183,6 @@ Specifies the sku, also referred as "edition". Required for creating a compute r
 ### Parameter: `tags`
 
 Contains resource tags defined as key-value pairs. Ignored when attaching a compute resource, i.e. when you provide a resource ID.
-
 - Required: No
 - Type: object
 

@@ -329,38 +329,9 @@ module webtest 'br:bicep/modules/insights.webtest:1.0.0' = {
 | [`timeout`](#parameter-timeout) | int | Seconds until this WebTest will timeout and fail. |
 | [`validationRules`](#parameter-validationrules) | object | The collection of validation rule properties. |
 
-### Parameter: `name`
-
-Name of the webtest.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `request`
-
-The collection of request properties.
-
-- Required: Yes
-- Type: object
-
-### Parameter: `tags`
-
-A single hidden-link tag pointing to an existing AI component is required.
-
-- Required: Yes
-- Type: object
-
-### Parameter: `webTestName`
-
-User defined name if this WebTest.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `configuration`
 
 An XML configuration specification for a WebTest.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -368,7 +339,6 @@ An XML configuration specification for a WebTest.
 ### Parameter: `description`
 
 User defined description for this WebTest.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -376,7 +346,6 @@ User defined description for this WebTest.
 ### Parameter: `enabled`
 
 Is the test actively being monitored.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -384,7 +353,6 @@ Is the test actively being monitored.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -392,7 +360,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `frequency`
 
 Interval in seconds between test runs for this WebTest.
-
 - Required: No
 - Type: int
 - Default: `300`
@@ -400,7 +367,6 @@ Interval in seconds between test runs for this WebTest.
 ### Parameter: `kind`
 
 The kind of WebTest that this web test watches.
-
 - Required: No
 - Type: string
 - Default: `'standard'`
@@ -416,7 +382,6 @@ The kind of WebTest that this web test watches.
 ### Parameter: `location`
 
 Location for all Resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
@@ -424,7 +389,6 @@ Location for all Resources.
 ### Parameter: `locations`
 
 List of where to physically run the tests from to give global coverage for accessibility of your application.
-
 - Required: No
 - Type: array
 - Default:
@@ -451,43 +415,45 @@ List of where to physically run the tests from to give global coverage for acces
 ### Parameter: `lock`
 
 The lock settings of the service.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`kind`](#parameter-lockkind) | string | Specify the type of lock. |
-| [`name`](#parameter-lockname) | string | Specify the name of lock. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`kind`](#parameter-lockkind) | No | string | Optional. Specify the type of lock. |
+| [`name`](#parameter-lockname) | No | string | Optional. Specify the name of lock. |
 
 ### Parameter: `lock.kind`
 
-Specify the type of lock.
+Optional. Specify the type of lock.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'CanNotDelete'
-    'None'
-    'ReadOnly'
-  ]
-  ```
+- Allowed: `[CanNotDelete, None, ReadOnly]`
 
 ### Parameter: `lock.name`
 
-Specify the name of lock.
+Optional. Specify the name of lock.
 
 - Required: No
 - Type: string
+
+### Parameter: `name`
+
+Name of the webtest.
+- Required: Yes
+- Type: string
+
+### Parameter: `request`
+
+The collection of request properties.
+- Required: Yes
+- Type: object
 
 ### Parameter: `retryEnabled`
 
 Allow for retries should this WebTest fail.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -495,104 +461,87 @@ Allow for retries should this WebTest fail.
 ### Parameter: `roleAssignments`
 
 Array of role assignment objects that contain the 'roleDefinitionIdOrName' and 'principalId' to define RBAC role assignments on this resource. In the roleDefinitionIdOrName attribute, you can provide either the display name of the role definition, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
 - Required: No
 - Type: array
 
-**Required parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`principalId`](#parameter-roleassignmentsprincipalid) | string | The principal ID of the principal (user/group/identity) to assign the role to. |
-| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | string | The name of the role to assign. If it cannot be found you can specify the role definition ID instead. |
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`condition`](#parameter-roleassignmentscondition) | string | The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
-| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | string | Version of the condition. |
-| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | string | The Resource Id of the delegated managed identity resource. |
-| [`description`](#parameter-roleassignmentsdescription) | string | The description of the role assignment. |
-| [`principalType`](#parameter-roleassignmentsprincipaltype) | string | The principal type of the assigned principal ID. |
-
-### Parameter: `roleAssignments.principalId`
-
-The principal ID of the principal (user/group/identity) to assign the role to.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `roleAssignments.roleDefinitionIdOrName`
-
-The name of the role to assign. If it cannot be found you can specify the role definition ID instead.
-
-- Required: Yes
-- Type: string
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`condition`](#parameter-roleassignmentscondition) | No | string | Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
+| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | No | string | Optional. Version of the condition. |
+| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | No | string | Optional. The Resource Id of the delegated managed identity resource. |
+| [`description`](#parameter-roleassignmentsdescription) | No | string | Optional. The description of the role assignment. |
+| [`principalId`](#parameter-roleassignmentsprincipalid) | Yes | string | Required. The principal ID of the principal (user/group/identity) to assign the role to. |
+| [`principalType`](#parameter-roleassignmentsprincipaltype) | No | string | Optional. The principal type of the assigned principal ID. |
+| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | Yes | string | Required. The name of the role to assign. If it cannot be found you can specify the role definition ID instead. |
 
 ### Parameter: `roleAssignments.condition`
 
-The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
+Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.conditionVersion`
 
-Version of the condition.
+Optional. Version of the condition.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    '2.0'
-  ]
-  ```
+- Allowed: `[2.0]`
 
 ### Parameter: `roleAssignments.delegatedManagedIdentityResourceId`
 
-The Resource Id of the delegated managed identity resource.
+Optional. The Resource Id of the delegated managed identity resource.
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.description`
 
-The description of the role assignment.
+Optional. The description of the role assignment.
 
 - Required: No
+- Type: string
+
+### Parameter: `roleAssignments.principalId`
+
+Required. The principal ID of the principal (user/group/identity) to assign the role to.
+
+- Required: Yes
 - Type: string
 
 ### Parameter: `roleAssignments.principalType`
 
-The principal type of the assigned principal ID.
+Optional. The principal type of the assigned principal ID.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'Device'
-    'ForeignGroup'
-    'Group'
-    'ServicePrincipal'
-    'User'
-  ]
-  ```
+- Allowed: `[Device, ForeignGroup, Group, ServicePrincipal, User]`
+
+### Parameter: `roleAssignments.roleDefinitionIdOrName`
+
+Required. The name of the role to assign. If it cannot be found you can specify the role definition ID instead.
+
+- Required: Yes
+- Type: string
 
 ### Parameter: `syntheticMonitorId`
 
 Unique ID of this WebTest.
-
 - Required: No
 - Type: string
 - Default: `[parameters('name')]`
 
+### Parameter: `tags`
+
+A single hidden-link tag pointing to an existing AI component is required.
+- Required: Yes
+- Type: object
+
 ### Parameter: `timeout`
 
 Seconds until this WebTest will timeout and fail.
-
 - Required: No
 - Type: int
 - Default: `30`
@@ -600,10 +549,15 @@ Seconds until this WebTest will timeout and fail.
 ### Parameter: `validationRules`
 
 The collection of validation rule properties.
-
 - Required: No
 - Type: object
 - Default: `{}`
+
+### Parameter: `webTestName`
+
+User defined name if this WebTest.
+- Required: Yes
+- Type: string
 
 
 ## Outputs

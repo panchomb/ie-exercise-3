@@ -46,42 +46,18 @@ This module deploys a Log Analytics Workspace Saved Search.
 ### Parameter: `category`
 
 Query category.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `displayName`
 
 Display name for the search.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `name`
-
-Name of the saved search.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `query`
-
-Kusto Query to be stored.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `logAnalyticsWorkspaceName`
-
-The name of the parent Log Analytics workspace. Required if the template is used in a standalone deployment.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -89,7 +65,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `etag`
 
 The ETag of the saved search. To override an existing saved search, use "*" or specify the current Etag.
-
 - Required: No
 - Type: string
 - Default: `'*'`
@@ -97,7 +72,6 @@ The ETag of the saved search. To override an existing saved search, use "*" or s
 ### Parameter: `functionAlias`
 
 The function alias if query serves as a function.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -105,15 +79,31 @@ The function alias if query serves as a function.
 ### Parameter: `functionParameters`
 
 The optional function parameters if query serves as a function. Value should be in the following format: "param-name1:type1 = default_value1, param-name2:type2 = default_value2". For more examples and proper syntax please refer to /azure/kusto/query/functions/user-defined-functions.
-
 - Required: No
 - Type: string
 - Default: `''`
 
+### Parameter: `logAnalyticsWorkspaceName`
+
+The name of the parent Log Analytics workspace. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
+
+### Parameter: `name`
+
+Name of the saved search.
+- Required: Yes
+- Type: string
+
+### Parameter: `query`
+
+Kusto Query to be stored.
+- Required: Yes
+- Type: string
+
 ### Parameter: `tags`
 
 Tags to configure in the resource.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -121,7 +111,6 @@ Tags to configure in the resource.
 ### Parameter: `version`
 
 The version number of the query language.
-
 - Required: No
 - Type: int
 - Default: `2`

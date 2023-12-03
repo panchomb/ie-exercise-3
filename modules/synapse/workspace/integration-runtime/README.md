@@ -37,17 +37,22 @@ This module deploys a Synapse Workspace Integration Runtime.
 | :-- | :-- | :-- |
 | [`enableDefaultTelemetry`](#parameter-enabledefaulttelemetry) | bool | Enable telemetry via a Globally Unique Identifier (GUID). |
 
+### Parameter: `enableDefaultTelemetry`
+
+Enable telemetry via a Globally Unique Identifier (GUID).
+- Required: No
+- Type: bool
+- Default: `True`
+
 ### Parameter: `name`
 
 The name of the Integration Runtime.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `type`
 
 The type of Integration Runtime.
-
 - Required: Yes
 - Type: string
 - Allowed:
@@ -61,7 +66,6 @@ The type of Integration Runtime.
 ### Parameter: `typeProperties`
 
 Integration Runtime type properties. Required if type is "Managed".
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -69,17 +73,8 @@ Integration Runtime type properties. Required if type is "Managed".
 ### Parameter: `workspaceName`
 
 The name of the parent Synapse Workspace. Required if the template is used in a standalone deployment.
-
 - Required: Yes
 - Type: string
-
-### Parameter: `enableDefaultTelemetry`
-
-Enable telemetry via a Globally Unique Identifier (GUID).
-
-- Required: No
-- Type: bool
-- Default: `True`
 
 
 ## Outputs

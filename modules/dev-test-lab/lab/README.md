@@ -1219,33 +1219,9 @@ module lab 'br:bicep/modules/dev-test-lab.lab:1.0.0' = {
 | [`virtualnetworks`](#parameter-virtualnetworks) | array | Virtual networks to create for the lab. |
 | [`vmCreationResourceGroupId`](#parameter-vmcreationresourcegroupid) | string | Resource Group allocation for virtual machines. If left empty, virtual machines will be deployed in their own Resource Groups. Default is the same Resource Group for DevTest Lab. |
 
-### Parameter: `name`
-
-The name of the lab.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `encryptionDiskEncryptionSetId`
-
-The Disk Encryption Set Resource ID used to encrypt OS and data disks created as part of the the lab. Required if encryptionType is set to "EncryptionAtRestWithCustomerKey".
-
-- Required: No
-- Type: string
-- Default: `''`
-
-### Parameter: `notificationchannels`
-
-Notification Channels to create for the lab. Required if the schedules property "notificationSettingsStatus" is set to "Enabled.
-
-- Required: No
-- Type: array
-- Default: `[]`
-
 ### Parameter: `announcement`
 
 The properties of any lab announcement associated with this lab.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -1253,7 +1229,6 @@ The properties of any lab announcement associated with this lab.
 ### Parameter: `artifactsources`
 
 Artifact sources to create for the lab.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1261,7 +1236,6 @@ Artifact sources to create for the lab.
 ### Parameter: `artifactsStorageAccount`
 
 The resource ID of the storage account used to store artifacts and images by the lab. Also used for defaultStorageAccount, defaultPremiumStorageAccount and premiumDataDiskStorageAccount properties. If left empty, a default storage account will be created by the lab and used.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -1269,7 +1243,6 @@ The resource ID of the storage account used to store artifacts and images by the
 ### Parameter: `browserConnect`
 
 Enable browser connect on virtual machines if the lab's VNETs have configured Azure Bastion.
-
 - Required: No
 - Type: string
 - Default: `'Disabled'`
@@ -1284,7 +1257,6 @@ Enable browser connect on virtual machines if the lab's VNETs have configured Az
 ### Parameter: `costs`
 
 Costs to create for the lab.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -1292,7 +1264,6 @@ Costs to create for the lab.
 ### Parameter: `disableAutoUpgradeCseMinorVersion`
 
 Disable auto upgrade custom script extension minor version.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -1300,15 +1271,20 @@ Disable auto upgrade custom script extension minor version.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
 
+### Parameter: `encryptionDiskEncryptionSetId`
+
+The Disk Encryption Set Resource ID used to encrypt OS and data disks created as part of the the lab. Required if encryptionType is set to "EncryptionAtRestWithCustomerKey".
+- Required: No
+- Type: string
+- Default: `''`
+
 ### Parameter: `encryptionType`
 
 Specify how OS and data disks created as part of the lab are encrypted.
-
 - Required: No
 - Type: string
 - Default: `'EncryptionAtRestWithPlatformKey'`
@@ -1323,7 +1299,6 @@ Specify how OS and data disks created as part of the lab are encrypted.
 ### Parameter: `environmentPermission`
 
 The access rights to be granted to the user when provisioning an environment.
-
 - Required: No
 - Type: string
 - Default: `'Reader'`
@@ -1338,7 +1313,6 @@ The access rights to be granted to the user when provisioning an environment.
 ### Parameter: `extendedProperties`
 
 Extended properties of the lab used for experimental features.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -1346,7 +1320,6 @@ Extended properties of the lab used for experimental features.
 ### Parameter: `isolateLabResources`
 
 Enable lab resources isolation from the public internet.
-
 - Required: No
 - Type: string
 - Default: `'Enabled'`
@@ -1361,7 +1334,6 @@ Enable lab resources isolation from the public internet.
 ### Parameter: `labStorageType`
 
 Type of storage used by the lab. It can be either Premium or Standard.
-
 - Required: No
 - Type: string
 - Default: `'Premium'`
@@ -1377,7 +1349,6 @@ Type of storage used by the lab. It can be either Premium or Standard.
 ### Parameter: `location`
 
 Location for all Resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
@@ -1385,35 +1356,26 @@ Location for all Resources.
 ### Parameter: `lock`
 
 The lock settings of the service.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`kind`](#parameter-lockkind) | string | Specify the type of lock. |
-| [`name`](#parameter-lockname) | string | Specify the name of lock. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`kind`](#parameter-lockkind) | No | string | Optional. Specify the type of lock. |
+| [`name`](#parameter-lockname) | No | string | Optional. Specify the name of lock. |
 
 ### Parameter: `lock.kind`
 
-Specify the type of lock.
+Optional. Specify the type of lock.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'CanNotDelete'
-    'None'
-    'ReadOnly'
-  ]
-  ```
+- Allowed: `[CanNotDelete, None, ReadOnly]`
 
 ### Parameter: `lock.name`
 
-Specify the name of lock.
+Optional. Specify the name of lock.
 
 - Required: No
 - Type: string
@@ -1421,19 +1383,17 @@ Specify the name of lock.
 ### Parameter: `managedIdentities`
 
 The managed identity definition for this resource.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | array | The resource ID(s) to assign to the resource. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | Yes | array | Optional. The resource ID(s) to assign to the resource. |
 
 ### Parameter: `managedIdentities.userAssignedResourceIds`
 
-The resource ID(s) to assign to the resource.
+Optional. The resource ID(s) to assign to the resource.
 
 - Required: Yes
 - Type: array
@@ -1441,7 +1401,6 @@ The resource ID(s) to assign to the resource.
 ### Parameter: `managementIdentitiesResourceIds`
 
 The resource ID(s) to assign to the virtual machines associated with this lab.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1449,7 +1408,6 @@ The resource ID(s) to assign to the virtual machines associated with this lab.
 ### Parameter: `mandatoryArtifactsResourceIdsLinux`
 
 The ordered list of artifact resource IDs that should be applied on all Linux VM creations by default, prior to the artifacts specified by the user.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1457,7 +1415,19 @@ The ordered list of artifact resource IDs that should be applied on all Linux VM
 ### Parameter: `mandatoryArtifactsResourceIdsWindows`
 
 The ordered list of artifact resource IDs that should be applied on all Windows VM creations by default, prior to the artifacts specified by the user.
+- Required: No
+- Type: array
+- Default: `[]`
 
+### Parameter: `name`
+
+The name of the lab.
+- Required: Yes
+- Type: string
+
+### Parameter: `notificationchannels`
+
+Notification Channels to create for the lab. Required if the schedules property "notificationSettingsStatus" is set to "Enabled.
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1465,7 +1435,6 @@ The ordered list of artifact resource IDs that should be applied on all Windows 
 ### Parameter: `policies`
 
 Policies to create for the lab.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1473,7 +1442,6 @@ Policies to create for the lab.
 ### Parameter: `premiumDataDisks`
 
 The setting to enable usage of premium data disks. When its value is "Enabled", creation of standard or premium data disks is allowed. When its value is "Disabled", only creation of standard data disks is allowed. Default is "Disabled".
-
 - Required: No
 - Type: string
 - Default: `'Disabled'`
@@ -1488,96 +1456,74 @@ The setting to enable usage of premium data disks. When its value is "Enabled", 
 ### Parameter: `roleAssignments`
 
 Array of role assignment objects that contain the 'roleDefinitionIdOrName' and 'principalIds' to define RBAC role assignments on this resource. In the roleDefinitionIdOrName attribute, you can provide either the display name of the role definition, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
 - Required: No
 - Type: array
 
-**Required parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`principalId`](#parameter-roleassignmentsprincipalid) | string | The principal ID of the principal (user/group/identity) to assign the role to. |
-| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | string | The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`condition`](#parameter-roleassignmentscondition) | string | The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
-| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | string | Version of the condition. |
-| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | string | The Resource Id of the delegated managed identity resource. |
-| [`description`](#parameter-roleassignmentsdescription) | string | The description of the role assignment. |
-| [`principalType`](#parameter-roleassignmentsprincipaltype) | string | The principal type of the assigned principal ID. |
-
-### Parameter: `roleAssignments.principalId`
-
-The principal ID of the principal (user/group/identity) to assign the role to.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `roleAssignments.roleDefinitionIdOrName`
-
-The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
-- Required: Yes
-- Type: string
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`condition`](#parameter-roleassignmentscondition) | No | string | Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
+| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | No | string | Optional. Version of the condition. |
+| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | No | string | Optional. The Resource Id of the delegated managed identity resource. |
+| [`description`](#parameter-roleassignmentsdescription) | No | string | Optional. The description of the role assignment. |
+| [`principalId`](#parameter-roleassignmentsprincipalid) | Yes | string | Required. The principal ID of the principal (user/group/identity) to assign the role to. |
+| [`principalType`](#parameter-roleassignmentsprincipaltype) | No | string | Optional. The principal type of the assigned principal ID. |
+| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | Yes | string | Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
 
 ### Parameter: `roleAssignments.condition`
 
-The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
+Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.conditionVersion`
 
-Version of the condition.
+Optional. Version of the condition.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    '2.0'
-  ]
-  ```
+- Allowed: `[2.0]`
 
 ### Parameter: `roleAssignments.delegatedManagedIdentityResourceId`
 
-The Resource Id of the delegated managed identity resource.
+Optional. The Resource Id of the delegated managed identity resource.
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.description`
 
-The description of the role assignment.
+Optional. The description of the role assignment.
 
 - Required: No
+- Type: string
+
+### Parameter: `roleAssignments.principalId`
+
+Required. The principal ID of the principal (user/group/identity) to assign the role to.
+
+- Required: Yes
 - Type: string
 
 ### Parameter: `roleAssignments.principalType`
 
-The principal type of the assigned principal ID.
+Optional. The principal type of the assigned principal ID.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'Device'
-    'ForeignGroup'
-    'Group'
-    'ServicePrincipal'
-    'User'
-  ]
-  ```
+- Allowed: `[Device, ForeignGroup, Group, ServicePrincipal, User]`
+
+### Parameter: `roleAssignments.roleDefinitionIdOrName`
+
+Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
+
+- Required: Yes
+- Type: string
 
 ### Parameter: `schedules`
 
 Schedules to create for the lab.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1585,7 +1531,6 @@ Schedules to create for the lab.
 ### Parameter: `support`
 
 The properties of any lab support message associated with this lab.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -1593,14 +1538,12 @@ The properties of any lab support message associated with this lab.
 ### Parameter: `tags`
 
 Tags of the resource.
-
 - Required: No
 - Type: object
 
 ### Parameter: `virtualnetworks`
 
 Virtual networks to create for the lab.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -1608,7 +1551,6 @@ Virtual networks to create for the lab.
 ### Parameter: `vmCreationResourceGroupId`
 
 Resource Group allocation for virtual machines. If left empty, virtual machines will be deployed in their own Resource Groups. Default is the same Resource Group for DevTest Lab.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().id]`

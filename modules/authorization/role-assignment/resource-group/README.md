@@ -37,24 +37,9 @@ This module deploys a Role Assignment at a Resource Group scope.
 | [`resourceGroupName`](#parameter-resourcegroupname) | string | Name of the Resource Group to assign the RBAC role to. If not provided, will use the current scope for deployment. |
 | [`subscriptionId`](#parameter-subscriptionid) | string | Subscription ID of the subscription to assign the RBAC role to. If not provided, will use the current scope for deployment. |
 
-### Parameter: `principalId`
-
-The Principal or Object ID of the Security Principal (User, Group, Service Principal, Managed Identity).
-
-- Required: Yes
-- Type: string
-
-### Parameter: `roleDefinitionIdOrName`
-
-You can provide either the display name of the role definition, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `condition`
 
 The conditions on the role assignment. This limits the resources it can be assigned to.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -62,7 +47,6 @@ The conditions on the role assignment. This limits the resources it can be assig
 ### Parameter: `conditionVersion`
 
 Version of the condition. Currently accepted value is "2.0".
-
 - Required: No
 - Type: string
 - Default: `'2.0'`
@@ -76,7 +60,6 @@ Version of the condition. Currently accepted value is "2.0".
 ### Parameter: `delegatedManagedIdentityResourceId`
 
 ID of the delegated managed identity resource.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -84,7 +67,6 @@ ID of the delegated managed identity resource.
 ### Parameter: `description`
 
 The description of the role assignment.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -92,15 +74,19 @@ The description of the role assignment.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
 
+### Parameter: `principalId`
+
+The Principal or Object ID of the Security Principal (User, Group, Service Principal, Managed Identity).
+- Required: Yes
+- Type: string
+
 ### Parameter: `principalType`
 
 The principal type of the assigned principal ID.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -119,15 +105,19 @@ The principal type of the assigned principal ID.
 ### Parameter: `resourceGroupName`
 
 Name of the Resource Group to assign the RBAC role to. If not provided, will use the current scope for deployment.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().name]`
 
+### Parameter: `roleDefinitionIdOrName`
+
+You can provide either the display name of the role definition, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
+- Required: Yes
+- Type: string
+
 ### Parameter: `subscriptionId`
 
 Subscription ID of the subscription to assign the RBAC role to. If not provided, will use the current scope for deployment.
-
 - Required: No
 - Type: string
 - Default: `[subscription().subscriptionId]`

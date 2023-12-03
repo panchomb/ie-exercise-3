@@ -42,24 +42,9 @@ This module deploys a Recovery Services Vault Protection Container.
 | [`protectedItems`](#parameter-protecteditems) | array | Protected items to register in the container. |
 | [`sourceResourceId`](#parameter-sourceresourceid) | string | Resource ID of the target resource for the Protection Container. |
 
-### Parameter: `name`
-
-Name of the Azure Recovery Service Vault Protection Container.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `recoveryVaultName`
-
-The name of the parent Azure Recovery Service Vault. Required if the template is used in a standalone deployment.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `backupManagementType`
 
 Backup management type to execute the current Protection Container job.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -82,7 +67,6 @@ Backup management type to execute the current Protection Container job.
 ### Parameter: `containerType`
 
 Type of the container.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -105,7 +89,6 @@ Type of the container.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -113,7 +96,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `friendlyName`
 
 Friendly name of the Protection Container.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -121,23 +103,32 @@ Friendly name of the Protection Container.
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
 
+### Parameter: `name`
+
+Name of the Azure Recovery Service Vault Protection Container.
+- Required: Yes
+- Type: string
+
 ### Parameter: `protectedItems`
 
 Protected items to register in the container.
-
 - Required: No
 - Type: array
 - Default: `[]`
 
+### Parameter: `recoveryVaultName`
+
+The name of the parent Azure Recovery Service Vault. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
+
 ### Parameter: `sourceResourceId`
 
 Resource ID of the target resource for the Protection Container.
-
 - Required: No
 - Type: string
 - Default: `''`

@@ -393,28 +393,12 @@ module virtualHub 'br:bicep/modules/network.virtual-hub:1.0.0' = {
 ### Parameter: `addressPrefix`
 
 Address-prefix for this VirtualHub.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `name`
-
-The virtual hub name.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `virtualWanId`
-
-Resource ID of the virtual WAN to link to.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `allowBranchToBranchTraffic`
 
 Flag to control transit for VirtualRouter hub.
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -422,7 +406,6 @@ Flag to control transit for VirtualRouter hub.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -430,7 +413,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `expressRouteGatewayId`
 
 Resource ID of the Express Route Gateway to link to.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -438,7 +420,6 @@ Resource ID of the Express Route Gateway to link to.
 ### Parameter: `hubRouteTables`
 
 Route tables to create for the virtual hub.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -446,7 +427,6 @@ Route tables to create for the virtual hub.
 ### Parameter: `hubVirtualNetworkConnections`
 
 Virtual network connections to create for the virtual hub.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -454,7 +434,6 @@ Virtual network connections to create for the virtual hub.
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
@@ -462,43 +441,39 @@ Location for all resources.
 ### Parameter: `lock`
 
 The lock settings of the service.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`kind`](#parameter-lockkind) | string | Specify the type of lock. |
-| [`name`](#parameter-lockname) | string | Specify the name of lock. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`kind`](#parameter-lockkind) | No | string | Optional. Specify the type of lock. |
+| [`name`](#parameter-lockname) | No | string | Optional. Specify the name of lock. |
 
 ### Parameter: `lock.kind`
 
-Specify the type of lock.
+Optional. Specify the type of lock.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'CanNotDelete'
-    'None'
-    'ReadOnly'
-  ]
-  ```
+- Allowed: `[CanNotDelete, None, ReadOnly]`
 
 ### Parameter: `lock.name`
 
-Specify the name of lock.
+Optional. Specify the name of lock.
 
 - Required: No
+- Type: string
+
+### Parameter: `name`
+
+The virtual hub name.
+- Required: Yes
 - Type: string
 
 ### Parameter: `p2SVpnGatewayId`
 
 Resource ID of the Point-to-Site VPN Gateway to link to.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -506,7 +481,6 @@ Resource ID of the Point-to-Site VPN Gateway to link to.
 ### Parameter: `preferredRoutingGateway`
 
 The preferred routing gateway types.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -523,7 +497,6 @@ The preferred routing gateway types.
 ### Parameter: `routeTableRoutes`
 
 VirtualHub route tables.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -531,7 +504,6 @@ VirtualHub route tables.
 ### Parameter: `securityPartnerProviderId`
 
 ID of the Security Partner Provider to link to.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -539,7 +511,6 @@ ID of the Security Partner Provider to link to.
 ### Parameter: `securityProviderName`
 
 The Security Provider name.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -547,7 +518,6 @@ The Security Provider name.
 ### Parameter: `sku`
 
 The sku of this VirtualHub.
-
 - Required: No
 - Type: string
 - Default: `'Standard'`
@@ -562,14 +532,12 @@ The sku of this VirtualHub.
 ### Parameter: `tags`
 
 Tags of the resource.
-
 - Required: No
 - Type: object
 
 ### Parameter: `virtualHubRouteTableV2s`
 
 List of all virtual hub route table v2s associated with this VirtualHub.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -577,7 +545,6 @@ List of all virtual hub route table v2s associated with this VirtualHub.
 ### Parameter: `virtualRouterAsn`
 
 VirtualRouter ASN.
-
 - Required: No
 - Type: int
 - Default: `-1`
@@ -585,15 +552,19 @@ VirtualRouter ASN.
 ### Parameter: `virtualRouterIps`
 
 VirtualRouter IPs.
-
 - Required: No
 - Type: array
 - Default: `[]`
 
+### Parameter: `virtualWanId`
+
+Resource ID of the virtual WAN to link to.
+- Required: Yes
+- Type: string
+
 ### Parameter: `vpnGatewayId`
 
 Resource ID of the VPN Gateway to link to.
-
 - Required: No
 - Type: string
 - Default: `''`

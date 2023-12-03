@@ -305,17 +305,9 @@ module deploymentScript 'br:bicep/modules/resources.deployment-script:1.0.0' = {
 | :-- | :-- | :-- |
 | [`baseTime`](#parameter-basetime) | string | Do not provide a value! This date value is used to make sure the script run every time the template is deployed. |
 
-### Parameter: `name`
-
-Display name of the script to be run.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `arguments`
 
 Command-line arguments to pass to the script. Arguments are separated by spaces.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -323,7 +315,6 @@ Command-line arguments to pass to the script. Arguments are separated by spaces.
 ### Parameter: `azCliVersion`
 
 Azure CLI module version to be used.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -331,15 +322,20 @@ Azure CLI module version to be used.
 ### Parameter: `azPowerShellVersion`
 
 Azure PowerShell module version to be used.
-
 - Required: No
 - Type: string
 - Default: `'3.0'`
 
+### Parameter: `baseTime`
+
+Do not provide a value! This date value is used to make sure the script run every time the template is deployed.
+- Required: No
+- Type: string
+- Default: `[utcNow('yyyy-MM-dd-HH-mm-ss')]`
+
 ### Parameter: `cleanupPreference`
 
 The clean up preference when the script execution gets in a terminal state. Specify the preference on when to delete the deployment script resources. The default value is Always, which means the deployment script resources are deleted despite the terminal state (Succeeded, Failed, canceled).
-
 - Required: No
 - Type: string
 - Default: `'Always'`
@@ -355,7 +351,6 @@ The clean up preference when the script execution gets in a terminal state. Spec
 ### Parameter: `containerGroupName`
 
 Container group name, if not specified then the name will get auto-generated. Not specifying a 'containerGroupName' indicates the system to generate a unique name which might end up flagging an Azure Policy as non-compliant. Use 'containerGroupName' when you have an Azure Policy that expects a specific naming convention or when you want to fully control the name. 'containerGroupName' property must be between 1 and 63 characters long, must contain only lowercase letters, numbers, and dashes and it cannot start or end with a dash and consecutive dashes are not allowed.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -363,7 +358,6 @@ Container group name, if not specified then the name will get auto-generated. No
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -371,7 +365,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `environmentVariables`
 
 The environment variables to pass over to the script. The list is passed as an object with a key name "secureList" and the value is the list of environment variables (array). The list must have a 'name' and a 'value' or a 'secretValue' property for each object.
-
 - Required: No
 - Type: secureObject
 - Default: `{}`
@@ -379,7 +372,6 @@ The environment variables to pass over to the script. The list is passed as an o
 ### Parameter: `kind`
 
 Type of the script. AzurePowerShell, AzureCLI.
-
 - Required: No
 - Type: string
 - Default: `'AzurePowerShell'`
@@ -394,7 +386,6 @@ Type of the script. AzurePowerShell, AzureCLI.
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
@@ -402,35 +393,26 @@ Location for all resources.
 ### Parameter: `lock`
 
 The lock settings of the service.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`kind`](#parameter-lockkind) | string | Specify the type of lock. |
-| [`name`](#parameter-lockname) | string | Specify the name of lock. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`kind`](#parameter-lockkind) | No | string | Optional. Specify the type of lock. |
+| [`name`](#parameter-lockname) | No | string | Optional. Specify the name of lock. |
 
 ### Parameter: `lock.kind`
 
-Specify the type of lock.
+Optional. Specify the type of lock.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'CanNotDelete'
-    'None'
-    'ReadOnly'
-  ]
-  ```
+- Allowed: `[CanNotDelete, None, ReadOnly]`
 
 ### Parameter: `lock.name`
 
-Specify the name of lock.
+Optional. Specify the name of lock.
 
 - Required: No
 - Type: string
@@ -438,27 +420,30 @@ Specify the name of lock.
 ### Parameter: `managedIdentities`
 
 The managed identity definition for this resource.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | array | The resource ID(s) to assign to the resource. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`userAssignedResourceIds`](#parameter-managedidentitiesuserassignedresourceids) | Yes | array | Optional. The resource ID(s) to assign to the resource. |
 
 ### Parameter: `managedIdentities.userAssignedResourceIds`
 
-The resource ID(s) to assign to the resource.
+Optional. The resource ID(s) to assign to the resource.
 
 - Required: Yes
 - Type: array
 
+### Parameter: `name`
+
+Display name of the script to be run.
+- Required: Yes
+- Type: string
+
 ### Parameter: `primaryScriptUri`
 
 Uri for the external script. This is the entry point for the external script. To run an internal script, use the scriptContent instead.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -466,7 +451,6 @@ Uri for the external script. This is the entry point for the external script. To
 ### Parameter: `retentionInterval`
 
 Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week).
-
 - Required: No
 - Type: string
 - Default: `'P1D'`
@@ -474,7 +458,6 @@ Interval for which the service retains the script resource after it reaches a te
 ### Parameter: `runOnce`
 
 When set to false, script will run every time the template is deployed. When set to true, the script will only run once.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -482,7 +465,6 @@ When set to false, script will run every time the template is deployed. When set
 ### Parameter: `scriptContent`
 
 Script body. Max length: 32000 characters. To run an external script, use primaryScriptURI instead.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -490,7 +472,6 @@ Script body. Max length: 32000 characters. To run an external script, use primar
 ### Parameter: `storageAccountResourceId`
 
 The resource ID of the storage account to use for this deployment script. If none is provided, the deployment script uses a temporary, managed storage account.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -498,7 +479,6 @@ The resource ID of the storage account to use for this deployment script. If non
 ### Parameter: `supportingScriptUris`
 
 List of supporting files for the external script (defined in primaryScriptUri). Does not work with internal scripts (code defined in scriptContent).
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -506,25 +486,15 @@ List of supporting files for the external script (defined in primaryScriptUri). 
 ### Parameter: `tags`
 
 Tags of the resource.
-
 - Required: No
 - Type: object
 
 ### Parameter: `timeout`
 
 Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H - 1 hour; 'PT30M' - 30 minutes; 'P5D' - 5 days; 'P1Y' 1 year.
-
 - Required: No
 - Type: string
 - Default: `'PT1H'`
-
-### Parameter: `baseTime`
-
-Do not provide a value! This date value is used to make sure the script run every time the template is deployed.
-
-- Required: No
-- Type: string
-- Default: `[utcNow('yyyy-MM-dd-HH-mm-ss')]`
 
 
 ## Outputs

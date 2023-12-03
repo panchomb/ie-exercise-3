@@ -37,10 +37,16 @@ This module deploys a Static Web App Site Config.
 | [`enableDefaultTelemetry`](#parameter-enabledefaulttelemetry) | bool | Enable telemetry via a Globally Unique Identifier (GUID). |
 | [`location`](#parameter-location) | string | Location for all resources. |
 
+### Parameter: `enableDefaultTelemetry`
+
+Enable telemetry via a Globally Unique Identifier (GUID).
+- Required: No
+- Type: bool
+- Default: `True`
+
 ### Parameter: `kind`
 
 Type of settings to apply.
-
 - Required: Yes
 - Type: string
 - Allowed:
@@ -51,35 +57,24 @@ Type of settings to apply.
   ]
   ```
 
+### Parameter: `location`
+
+Location for all resources.
+- Required: No
+- Type: string
+- Default: `[resourceGroup().location]`
+
 ### Parameter: `properties`
 
 App settings.
-
 - Required: Yes
 - Type: object
 
 ### Parameter: `staticSiteName`
 
 The name of the parent Static Web App. Required if the template is used in a standalone deployment.
-
 - Required: Yes
 - Type: string
-
-### Parameter: `enableDefaultTelemetry`
-
-Enable telemetry via a Globally Unique Identifier (GUID).
-
-- Required: No
-- Type: bool
-- Default: `True`
-
-### Parameter: `location`
-
-Location for all resources.
-
-- Required: No
-- Type: string
-- Default: `[resourceGroup().location]`
 
 
 ## Outputs

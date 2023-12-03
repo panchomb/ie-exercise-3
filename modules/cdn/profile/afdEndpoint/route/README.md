@@ -45,36 +45,12 @@ This module deploys a CDN Profile AFD Endpoint route.
 ### Parameter: `afdEndpointName`
 
 The name of the AFD endpoint.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `name`
-
-The name of the route.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `originGroupName`
-
-The name of the origin group. The origin group must be defined in the profile originGroups.
-
-- Required: No
-- Type: string
-- Default: `''`
-
-### Parameter: `profileName`
-
-The name of the parent CDN profile.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `cacheConfiguration`
 
 The caching configuration for this route. To disable caching, do not provide a cacheConfiguration object.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -82,14 +58,12 @@ The caching configuration for this route. To disable caching, do not provide a c
 ### Parameter: `customDomainName`
 
 The name of the custom domain. The custom domain must be defined in the profile customDomains.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -97,7 +71,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `enabledState`
 
 Whether this route is enabled.
-
 - Required: No
 - Type: string
 - Default: `'Enabled'`
@@ -112,7 +85,6 @@ Whether this route is enabled.
 ### Parameter: `forwardingProtocol`
 
 The protocol this rule will use when forwarding traffic to backends.
-
 - Required: No
 - Type: string
 - Default: `'MatchRequest'`
@@ -128,7 +100,6 @@ The protocol this rule will use when forwarding traffic to backends.
 ### Parameter: `httpsRedirect`
 
 Whether to automatically redirect HTTP traffic to HTTPS traffic.
-
 - Required: No
 - Type: string
 - Default: `'Enabled'`
@@ -143,7 +114,6 @@ Whether to automatically redirect HTTP traffic to HTTPS traffic.
 ### Parameter: `linkToDefaultDomain`
 
 Whether this route will be linked to the default endpoint domain.
-
 - Required: No
 - Type: string
 - Default: `'Enabled'`
@@ -155,10 +125,22 @@ Whether this route will be linked to the default endpoint domain.
   ]
   ```
 
+### Parameter: `name`
+
+The name of the route.
+- Required: Yes
+- Type: string
+
+### Parameter: `originGroupName`
+
+The name of the origin group. The origin group must be defined in the profile originGroups.
+- Required: No
+- Type: string
+- Default: `''`
+
 ### Parameter: `originPath`
 
 A directory path on the origin that AzureFrontDoor can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -166,15 +148,19 @@ A directory path on the origin that AzureFrontDoor can use to retrieve content f
 ### Parameter: `patternsToMatch`
 
 The route patterns of the rule.
-
 - Required: No
 - Type: array
 - Default: `[]`
 
+### Parameter: `profileName`
+
+The name of the parent CDN profile.
+- Required: Yes
+- Type: string
+
 ### Parameter: `ruleSets`
 
 The rule sets of the rule. The rule sets must be defined in the profile ruleSets.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -182,7 +168,6 @@ The rule sets of the rule. The rule sets must be defined in the profile ruleSets
 ### Parameter: `supportedProtocols`
 
 The supported protocols of the rule.
-
 - Required: No
 - Type: array
 - Default: `[]`

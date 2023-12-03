@@ -17,7 +17,7 @@ This module deploys a Kubernetes Configuration Extension.
 | Resource Type | API Version |
 | :-- | :-- |
 | `Microsoft.KubernetesConfiguration/extensions` | [2022-03-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.KubernetesConfiguration/2022-03-01/extensions) |
-| `Microsoft.KubernetesConfiguration/fluxConfigurations` | [2023-05-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.KubernetesConfiguration/fluxConfigurations) |
+| `Microsoft.KubernetesConfiguration/fluxConfigurations` | [2022-03-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.KubernetesConfiguration/2022-03-01/fluxConfigurations) |
 
 ## Usage examples
 
@@ -132,16 +132,6 @@ module extension 'br:bicep/modules/kubernetes-configuration.extension:1.0.0' = {
           timeoutInSeconds: 180
           url: 'https://github.com/mspnp/aks-baseline'
         }
-        kustomizations: {
-          unified: {
-            dependsOn: []
-            force: false
-            path: './cluster-manifests'
-            prune: true
-            syncIntervalInSeconds: 300
-            timeoutInSeconds: 300
-          }
-        }
         namespace: 'flux-system'
       }
     ]
@@ -198,16 +188,6 @@ module extension 'br:bicep/modules/kubernetes-configuration.extension:1.0.0' = {
             "syncIntervalInSeconds": 300,
             "timeoutInSeconds": 180,
             "url": "https://github.com/mspnp/aks-baseline"
-          },
-          "kustomizations": {
-            "unified": {
-              "dependsOn": [],
-              "force": false,
-              "path": "./cluster-manifests",
-              "prune": true,
-              "syncIntervalInSeconds": 300,
-              "timeoutInSeconds": 300
-            }
           },
           "namespace": "flux-system"
         }
@@ -266,16 +246,6 @@ module extension 'br:bicep/modules/kubernetes-configuration.extension:1.0.0' = {
           timeoutInSeconds: 180
           url: 'https://github.com/mspnp/aks-baseline'
         }
-        kustomizations: {
-          unified: {
-            dependsOn: []
-            force: false
-            path: './cluster-manifests'
-            prune: true
-            syncIntervalInSeconds: 300
-            timeoutInSeconds: 300
-          }
-        }
         namespace: 'flux-system'
       }
     ]
@@ -333,16 +303,6 @@ module extension 'br:bicep/modules/kubernetes-configuration.extension:1.0.0' = {
             "timeoutInSeconds": 180,
             "url": "https://github.com/mspnp/aks-baseline"
           },
-          "kustomizations": {
-            "unified": {
-              "dependsOn": [],
-              "force": false,
-              "path": "./cluster-manifests",
-              "prune": true,
-              "syncIntervalInSeconds": 300,
-              "timeoutInSeconds": 300
-            }
-          },
           "namespace": "flux-system"
         }
       ]
@@ -391,28 +351,12 @@ module extension 'br:bicep/modules/kubernetes-configuration.extension:1.0.0' = {
 ### Parameter: `clusterName`
 
 The name of the AKS cluster that should be configured.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `extensionType`
-
-Type of the Extension, of which this resource is an instance of. It must be one of the Extension Types registered with Microsoft.KubernetesConfiguration by the Extension publisher.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `name`
-
-The name of the Flux Configuration.
-
 - Required: Yes
 - Type: string
 
 ### Parameter: `configurationProtectedSettings`
 
 Configuration settings that are sensitive, as name-value pairs for configuring this extension.
-
 - Required: No
 - Type: secureObject
 - Default: `{}`
@@ -420,7 +364,6 @@ Configuration settings that are sensitive, as name-value pairs for configuring t
 ### Parameter: `configurationSettings`
 
 Configuration settings, as name-value pairs for configuring this extension.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -428,15 +371,19 @@ Configuration settings, as name-value pairs for configuring this extension.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
 
+### Parameter: `extensionType`
+
+Type of the Extension, of which this resource is an instance of. It must be one of the Extension Types registered with Microsoft.KubernetesConfiguration by the Extension publisher.
+- Required: Yes
+- Type: string
+
 ### Parameter: `fluxConfigurations`
 
 A list of flux configuraitons.
-
 - Required: No
 - Type: array
 - Default: `[]`
@@ -444,15 +391,19 @@ A list of flux configuraitons.
 ### Parameter: `location`
 
 Location for all resources.
-
 - Required: No
 - Type: string
 - Default: `[resourceGroup().location]`
 
+### Parameter: `name`
+
+The name of the Flux Configuration.
+- Required: Yes
+- Type: string
+
 ### Parameter: `releaseNamespace`
 
 Namespace where the extension Release must be placed, for a Cluster scoped extension. If this namespace does not exist, it will be created.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -460,7 +411,6 @@ Namespace where the extension Release must be placed, for a Cluster scoped exten
 ### Parameter: `releaseTrain`
 
 ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable, Preview, etc.) - only if autoUpgradeMinorVersion is "true".
-
 - Required: No
 - Type: string
 - Default: `'Stable'`
@@ -468,7 +418,6 @@ ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable, Previ
 ### Parameter: `targetNamespace`
 
 Namespace where the extension will be created for an Namespace scoped extension. If this namespace does not exist, it will be created.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -476,7 +425,6 @@ Namespace where the extension will be created for an Namespace scoped extension.
 ### Parameter: `version`
 
 Version of the extension for this extension, if it is "pinned" to a specific version.
-
 - Required: No
 - Type: string
 - Default: `''`

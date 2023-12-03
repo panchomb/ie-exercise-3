@@ -550,24 +550,9 @@ module policyDefinition 'br:bicep/modules/authorization.policy-definition:1.0.0'
 | [`parameters`](#parameter-parameters) | object | The policy definition parameters that can be used in policy definition references. |
 | [`subscriptionId`](#parameter-subscriptionid) | string | The subscription ID of the subscription (Scope). Cannot be used with managementGroupId. |
 
-### Parameter: `name`
-
-Specifies the name of the policy definition. Maximum length is 64 characters for management group scope and subscription scope.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `policyRule`
-
-The Policy Rule details for the Policy Definition.
-
-- Required: Yes
-- Type: object
-
 ### Parameter: `description`
 
 The policy definition description.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -575,7 +560,6 @@ The policy definition description.
 ### Parameter: `displayName`
 
 The display name of the policy definition. Maximum length is 128 characters.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -583,7 +567,6 @@ The display name of the policy definition. Maximum length is 128 characters.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -591,7 +574,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `location`
 
 Location deployment metadata.
-
 - Required: No
 - Type: string
 - Default: `[deployment().location]`
@@ -599,7 +581,6 @@ Location deployment metadata.
 ### Parameter: `managementGroupId`
 
 The group ID of the Management Group (Scope). If not provided, will use the current scope for deployment.
-
 - Required: No
 - Type: string
 - Default: `[managementGroup().name]`
@@ -607,7 +588,6 @@ The group ID of the Management Group (Scope). If not provided, will use the curr
 ### Parameter: `metadata`
 
 The policy Definition metadata. Metadata is an open ended object and is typically a collection of key-value pairs.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -615,7 +595,6 @@ The policy Definition metadata. Metadata is an open ended object and is typicall
 ### Parameter: `mode`
 
 The policy definition mode. Default is All, Some examples are All, Indexed, Microsoft.KeyVault.Data.
-
 - Required: No
 - Type: string
 - Default: `'All'`
@@ -631,18 +610,28 @@ The policy definition mode. Default is All, Some examples are All, Indexed, Micr
   ]
   ```
 
+### Parameter: `name`
+
+Specifies the name of the policy definition. Maximum length is 64 characters for management group scope and subscription scope.
+- Required: Yes
+- Type: string
+
 ### Parameter: `parameters`
 
 The policy definition parameters that can be used in policy definition references.
-
 - Required: No
 - Type: object
 - Default: `{}`
 
+### Parameter: `policyRule`
+
+The Policy Rule details for the Policy Definition.
+- Required: Yes
+- Type: object
+
 ### Parameter: `subscriptionId`
 
 The subscription ID of the subscription (Scope). Cannot be used with managementGroupId.
-
 - Required: No
 - Type: string
 - Default: `''`

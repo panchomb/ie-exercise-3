@@ -41,32 +41,22 @@ This module deploys a Log Analytics Workspace Table.
 | [`searchResults`](#parameter-searchresults) | object | Parameters of the search job that initiated this table. |
 | [`totalRetentionInDays`](#parameter-totalretentionindays) | int | The table total retention in days, between 4 and 2555. Setting this property to -1 will default to table retention. |
 
-### Parameter: `name`
-
-The name of the table.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `workspaceName`
-
-The name of the parent workspaces. Required if the template is used in a standalone deployment.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via the Customer Usage Attribution ID (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
 
+### Parameter: `name`
+
+The name of the table.
+- Required: Yes
+- Type: string
+
 ### Parameter: `plan`
 
 Instruct the system how to handle and charge the logs ingested to this table.
-
 - Required: No
 - Type: string
 - Default: `'Analytics'`
@@ -81,7 +71,6 @@ Instruct the system how to handle and charge the logs ingested to this table.
 ### Parameter: `restoredLogs`
 
 Restore parameters.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -89,7 +78,6 @@ Restore parameters.
 ### Parameter: `retentionInDays`
 
 The table retention in days, between 4 and 730. Setting this property to -1 will default to the workspace retention.
-
 - Required: No
 - Type: int
 - Default: `-1`
@@ -97,7 +85,6 @@ The table retention in days, between 4 and 730. Setting this property to -1 will
 ### Parameter: `schema`
 
 Table's schema.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -105,7 +92,6 @@ Table's schema.
 ### Parameter: `searchResults`
 
 Parameters of the search job that initiated this table.
-
 - Required: No
 - Type: object
 - Default: `{}`
@@ -113,10 +99,15 @@ Parameters of the search job that initiated this table.
 ### Parameter: `totalRetentionInDays`
 
 The table total retention in days, between 4 and 2555. Setting this property to -1 will default to table retention.
-
 - Required: No
 - Type: int
 - Default: `-1`
+
+### Parameter: `workspaceName`
+
+The name of the parent workspaces. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
 
 
 ## Outputs

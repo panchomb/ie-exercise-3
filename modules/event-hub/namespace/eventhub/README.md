@@ -58,24 +58,9 @@ This module deploys an Event Hub Namespace Event Hub.
 | [`roleAssignments`](#parameter-roleassignments) | array | Array of role assignments to create. |
 | [`status`](#parameter-status) | string | Enumerates the possible values for the status of the Event Hub. |
 
-### Parameter: `name`
-
-The name of the event hub.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `namespaceName`
-
-The name of the parent event hub namespace. Required if the template is used in a standalone deployment.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `authorizationRules`
 
 Authorization Rules for the event hub.
-
 - Required: No
 - Type: array
 - Default:
@@ -95,7 +80,6 @@ Authorization Rules for the event hub.
 ### Parameter: `captureDescriptionDestinationArchiveNameFormat`
 
 Blob naming convention for archive, e.g. {Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}. Here all the parameters (Namespace,EventHub .. etc) are mandatory irrespective of order.
-
 - Required: No
 - Type: string
 - Default: `'{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}'`
@@ -103,7 +87,6 @@ Blob naming convention for archive, e.g. {Namespace}/{EventHub}/{PartitionId}/{Y
 ### Parameter: `captureDescriptionDestinationBlobContainer`
 
 Blob container Name.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -111,7 +94,6 @@ Blob container Name.
 ### Parameter: `captureDescriptionDestinationName`
 
 Name for capture destination.
-
 - Required: No
 - Type: string
 - Default: `'EventHubArchive.AzureBlockBlob'`
@@ -119,7 +101,6 @@ Name for capture destination.
 ### Parameter: `captureDescriptionDestinationStorageAccountResourceId`
 
 Resource ID of the storage account to be used to create the blobs.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -127,7 +108,6 @@ Resource ID of the storage account to be used to create the blobs.
 ### Parameter: `captureDescriptionEnabled`
 
 A value that indicates whether capture description is enabled.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -135,7 +115,6 @@ A value that indicates whether capture description is enabled.
 ### Parameter: `captureDescriptionEncoding`
 
 Enumerates the possible values for the encoding format of capture description. Note: "AvroDeflate" will be deprecated in New API Version.
-
 - Required: No
 - Type: string
 - Default: `'Avro'`
@@ -150,7 +129,6 @@ Enumerates the possible values for the encoding format of capture description. N
 ### Parameter: `captureDescriptionIntervalInSeconds`
 
 The time window allows you to set the frequency with which the capture to Azure Blobs will happen.
-
 - Required: No
 - Type: int
 - Default: `300`
@@ -158,7 +136,6 @@ The time window allows you to set the frequency with which the capture to Azure 
 ### Parameter: `captureDescriptionSizeLimitInBytes`
 
 The size window defines the amount of data built up in your Event Hub before an capture operation.
-
 - Required: No
 - Type: int
 - Default: `314572800`
@@ -166,7 +143,6 @@ The size window defines the amount of data built up in your Event Hub before an 
 ### Parameter: `captureDescriptionSkipEmptyArchives`
 
 A value that indicates whether to Skip Empty Archives.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -174,7 +150,6 @@ A value that indicates whether to Skip Empty Archives.
 ### Parameter: `consumergroups`
 
 The consumer groups to create in this event hub instance.
-
 - Required: No
 - Type: array
 - Default:
@@ -189,7 +164,6 @@ The consumer groups to create in this event hub instance.
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -197,35 +171,26 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `lock`
 
 The lock settings of the service.
-
 - Required: No
 - Type: object
 
-**Optional parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`kind`](#parameter-lockkind) | string | Specify the type of lock. |
-| [`name`](#parameter-lockname) | string | Specify the name of lock. |
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`kind`](#parameter-lockkind) | No | string | Optional. Specify the type of lock. |
+| [`name`](#parameter-lockname) | No | string | Optional. Specify the name of lock. |
 
 ### Parameter: `lock.kind`
 
-Specify the type of lock.
+Optional. Specify the type of lock.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'CanNotDelete'
-    'None'
-    'ReadOnly'
-  ]
-  ```
+- Allowed: `[CanNotDelete, None, ReadOnly]`
 
 ### Parameter: `lock.name`
 
-Specify the name of lock.
+Optional. Specify the name of lock.
 
 - Required: No
 - Type: string
@@ -233,15 +198,25 @@ Specify the name of lock.
 ### Parameter: `messageRetentionInDays`
 
 Number of days to retain the events for this Event Hub, value should be 1 to 7 days. Will be automatically set to infinite retention if cleanup policy is set to "Compact".
-
 - Required: No
 - Type: int
 - Default: `1`
 
+### Parameter: `name`
+
+The name of the event hub.
+- Required: Yes
+- Type: string
+
+### Parameter: `namespaceName`
+
+The name of the parent event hub namespace. Required if the template is used in a standalone deployment.
+- Required: Yes
+- Type: string
+
 ### Parameter: `partitionCount`
 
 Number of partitions created for the Event Hub, allowed values are from 1 to 32 partitions.
-
 - Required: No
 - Type: int
 - Default: `2`
@@ -249,7 +224,6 @@ Number of partitions created for the Event Hub, allowed values are from 1 to 32 
 ### Parameter: `retentionDescriptionCleanupPolicy`
 
 Retention cleanup policy. Enumerates the possible values for cleanup policy.
-
 - Required: No
 - Type: string
 - Default: `'Delete'`
@@ -264,7 +238,6 @@ Retention cleanup policy. Enumerates the possible values for cleanup policy.
 ### Parameter: `retentionDescriptionRetentionTimeInHours`
 
 Retention time in hours. Number of hours to retain the events for this Event Hub. This value is only used when cleanupPolicy is Delete. If cleanupPolicy is Compact the returned value of this property is Long.MaxValue.
-
 - Required: No
 - Type: int
 - Default: `1`
@@ -272,7 +245,6 @@ Retention time in hours. Number of hours to retain the events for this Event Hub
 ### Parameter: `retentionDescriptionTombstoneRetentionTimeInHours`
 
 Retention cleanup policy. Number of hours to retain the tombstone markers of a compacted Event Hub. This value is only used when cleanupPolicy is Compact. Consumer must complete reading the tombstone marker within this specified amount of time if consumer begins from starting offset to ensure they get a valid snapshot for the specific key described by the tombstone marker within the compacted Event Hub.
-
 - Required: No
 - Type: int
 - Default: `1`
@@ -280,96 +252,74 @@ Retention cleanup policy. Number of hours to retain the tombstone markers of a c
 ### Parameter: `roleAssignments`
 
 Array of role assignments to create.
-
 - Required: No
 - Type: array
 
-**Required parameters**
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`principalId`](#parameter-roleassignmentsprincipalid) | string | The principal ID of the principal (user/group/identity) to assign the role to. |
-| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | string | The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`condition`](#parameter-roleassignmentscondition) | string | The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
-| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | string | Version of the condition. |
-| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | string | The Resource Id of the delegated managed identity resource. |
-| [`description`](#parameter-roleassignmentsdescription) | string | The description of the role assignment. |
-| [`principalType`](#parameter-roleassignmentsprincipaltype) | string | The principal type of the assigned principal ID. |
-
-### Parameter: `roleAssignments.principalId`
-
-The principal ID of the principal (user/group/identity) to assign the role to.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `roleAssignments.roleDefinitionIdOrName`
-
-The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
-
-- Required: Yes
-- Type: string
+| Name | Required | Type | Description |
+| :-- | :-- | :--| :-- |
+| [`condition`](#parameter-roleassignmentscondition) | No | string | Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container" |
+| [`conditionVersion`](#parameter-roleassignmentsconditionversion) | No | string | Optional. Version of the condition. |
+| [`delegatedManagedIdentityResourceId`](#parameter-roleassignmentsdelegatedmanagedidentityresourceid) | No | string | Optional. The Resource Id of the delegated managed identity resource. |
+| [`description`](#parameter-roleassignmentsdescription) | No | string | Optional. The description of the role assignment. |
+| [`principalId`](#parameter-roleassignmentsprincipalid) | Yes | string | Required. The principal ID of the principal (user/group/identity) to assign the role to. |
+| [`principalType`](#parameter-roleassignmentsprincipaltype) | No | string | Optional. The principal type of the assigned principal ID. |
+| [`roleDefinitionIdOrName`](#parameter-roleassignmentsroledefinitionidorname) | Yes | string | Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'. |
 
 ### Parameter: `roleAssignments.condition`
 
-The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
+Optional. The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase "foo_storage_container"
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.conditionVersion`
 
-Version of the condition.
+Optional. Version of the condition.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    '2.0'
-  ]
-  ```
+- Allowed: `[2.0]`
 
 ### Parameter: `roleAssignments.delegatedManagedIdentityResourceId`
 
-The Resource Id of the delegated managed identity resource.
+Optional. The Resource Id of the delegated managed identity resource.
 
 - Required: No
 - Type: string
 
 ### Parameter: `roleAssignments.description`
 
-The description of the role assignment.
+Optional. The description of the role assignment.
 
 - Required: No
+- Type: string
+
+### Parameter: `roleAssignments.principalId`
+
+Required. The principal ID of the principal (user/group/identity) to assign the role to.
+
+- Required: Yes
 - Type: string
 
 ### Parameter: `roleAssignments.principalType`
 
-The principal type of the assigned principal ID.
+Optional. The principal type of the assigned principal ID.
 
 - Required: No
 - Type: string
-- Allowed:
-  ```Bicep
-  [
-    'Device'
-    'ForeignGroup'
-    'Group'
-    'ServicePrincipal'
-    'User'
-  ]
-  ```
+- Allowed: `[Device, ForeignGroup, Group, ServicePrincipal, User]`
+
+### Parameter: `roleAssignments.roleDefinitionIdOrName`
+
+Required. The role to assign. You can provide either the display name of the role definition, the role definition GUID, or its fully qualified ID in the following format: '/providers/Microsoft.Authorization/roleDefinitions/c2f4ef07-c644-48eb-af81-4b1b4947fb11'.
+
+- Required: Yes
+- Type: string
 
 ### Parameter: `status`
 
 Enumerates the possible values for the status of the Event Hub.
-
 - Required: No
 - Type: string
 - Default: `'Active'`

@@ -41,40 +41,35 @@ This module deploys an API Management Service Subscription.
 | [`secondaryKey`](#parameter-secondarykey) | string | Secondary subscription key. If not specified during request key will be generated automatically. |
 | [`state`](#parameter-state) | string | Initial subscription state. If no value is specified, subscription is created with Submitted state. Possible states are "*" active "?" the subscription is active, "*" suspended "?" the subscription is blocked, and the subscriber cannot call any APIs of the product, * submitted ? the subscription request has been made by the developer, but has not yet been approved or rejected, * rejected ? the subscription request has been denied by an administrator, * cancelled ? the subscription has been cancelled by the developer or administrator, * expired ? the subscription reached its expiration date and was deactivated. - suspended, active, expired, submitted, rejected, cancelled. |
 
-### Parameter: `name`
+### Parameter: `allowTracing`
 
-Subscription name.
-
-- Required: Yes
-- Type: string
+Determines whether tracing can be enabled.
+- Required: No
+- Type: bool
+- Default: `True`
 
 ### Parameter: `apiManagementServiceName`
 
 The name of the parent API Management service. Required if the template is used in a standalone deployment.
-
 - Required: Yes
 - Type: string
-
-### Parameter: `allowTracing`
-
-Determines whether tracing can be enabled.
-
-- Required: No
-- Type: bool
-- Default: `True`
 
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
 
+### Parameter: `name`
+
+Subscription name.
+- Required: Yes
+- Type: string
+
 ### Parameter: `ownerId`
 
 User (user ID path) for whom subscription is being created in form /users/{userId}.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -82,7 +77,6 @@ User (user ID path) for whom subscription is being created in form /users/{userI
 ### Parameter: `primaryKey`
 
 Primary subscription key. If not specified during request key will be generated automatically.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -90,7 +84,6 @@ Primary subscription key. If not specified during request key will be generated 
 ### Parameter: `scope`
 
 Scope type to choose between a product, "allAPIs" or a specific API. Scope like "/products/{productId}" or "/apis" or "/apis/{apiId}".
-
 - Required: No
 - Type: string
 - Default: `'/apis'`
@@ -98,7 +91,6 @@ Scope type to choose between a product, "allAPIs" or a specific API. Scope like 
 ### Parameter: `secondaryKey`
 
 Secondary subscription key. If not specified during request key will be generated automatically.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -106,7 +98,6 @@ Secondary subscription key. If not specified during request key will be generate
 ### Parameter: `state`
 
 Initial subscription state. If no value is specified, subscription is created with Submitted state. Possible states are "*" active "?" the subscription is active, "*" suspended "?" the subscription is blocked, and the subscriber cannot call any APIs of the product, * submitted ? the subscription request has been made by the developer, but has not yet been approved or rejected, * rejected ? the subscription request has been denied by an administrator, * cancelled ? the subscription has been cancelled by the developer or administrator, * expired ? the subscription reached its expiration date and was deactivated. - suspended, active, expired, submitted, rejected, cancelled.
-
 - Required: No
 - Type: string
 - Default: `''`

@@ -195,7 +195,6 @@ module tags 'br:bicep/modules/resources.tags:1.0.0' = {
 ### Parameter: `enableDefaultTelemetry`
 
 Enable telemetry via a Globally Unique Identifier (GUID).
-
 - Required: No
 - Type: bool
 - Default: `True`
@@ -203,7 +202,6 @@ Enable telemetry via a Globally Unique Identifier (GUID).
 ### Parameter: `location`
 
 Location deployment metadata.
-
 - Required: No
 - Type: string
 - Default: `[deployment().location]`
@@ -211,7 +209,6 @@ Location deployment metadata.
 ### Parameter: `onlyUpdate`
 
 Instead of overwriting the existing tags, combine them with the new tags.
-
 - Required: No
 - Type: bool
 - Default: `False`
@@ -219,7 +216,6 @@ Instead of overwriting the existing tags, combine them with the new tags.
 ### Parameter: `resourceGroupName`
 
 Name of the Resource Group to assign the tags to. If no Resource Group name is provided, and Subscription ID is provided, the module deploys at subscription level, therefore assigns the provided tags to the subscription.
-
 - Required: No
 - Type: string
 - Default: `''`
@@ -227,7 +223,6 @@ Name of the Resource Group to assign the tags to. If no Resource Group name is p
 ### Parameter: `subscriptionId`
 
 Subscription ID of the subscription to assign the tags to. If no Resource Group name is provided, the module deploys at subscription level, therefore assigns the provided tags to the subscription.
-
 - Required: No
 - Type: string
 - Default: `[subscription().id]`
@@ -235,7 +230,6 @@ Subscription ID of the subscription to assign the tags to. If no Resource Group 
 ### Parameter: `tags`
 
 Tags for the resource group. If not provided, removes existing tags.
-
 - Required: No
 - Type: object
 
