@@ -1,7 +1,11 @@
 {
-    "modulePath": "./modules",
-    "rules": {
-      "no-deployments-resources": "warning"
+    "analyzers": {
+        "core": {
+            "rules": {
+                "no-deployments-resources":{
+                    "level": "warning"
+                }
+            }
+        }
     }
-  }
-  
+}
