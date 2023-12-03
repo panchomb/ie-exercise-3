@@ -1,3 +1,6 @@
+param username string
+@sys.description('The username to use for the deployment')
+
 param containerRegistryName string
 @sys.description('The name of the container registry')
 
@@ -46,7 +49,7 @@ module website 'modules/web/site/main.bicep' = {
     registry
     serverfarm
   ]
-  name: '${uniqueString(deployment().name)}-app'
+  name: 'exercise3-${username}-app'
   params: {
     name: appName
     location: location
