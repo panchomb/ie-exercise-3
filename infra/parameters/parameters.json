@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "containerRegistryName": {
-        "value": "exercise3-panchomb-registry"
+        "value": "panchombacr"
       },
       "containerRegistryImageName": {
-        "value": "exercise3-panchomb-image"
+        "value": "panchomb-image"
       },
       "containerRegistryImageVersion": {
         "value": "latest"
       },
       "appServicePlanName": {
-        "value": "exercise3-panchomb-app-sp"
+        "value": "panchomb-app-sp"
       },
       "appName": {
-        "value": "exercise3-panchomb-app"
+        "value": "panchomb-app"
       }
     }
   }
