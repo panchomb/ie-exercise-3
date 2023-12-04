@@ -4,11 +4,11 @@ param username string
 param containerRegistryName string
 @sys.description('The name of the container registry')
 
-param containerRegistryImageName string
-@sys.description('The name of the container image')
+// param containerRegistryImageName string
+// @sys.description('The name of the container image')
 
-param containerRegistryImageVersion string
-@sys.description('The version of the container image')
+// param containerRegistryImageVersion string
+// @sys.description('The version of the container image')
 
 param appServicePlanName string
 @sys.description('The name of the app service plan')
@@ -56,7 +56,7 @@ module website 'modules/web/site/main.bicep' = {
     kind: 'app'
     serverFarmResourceId: resourceId('Microsoft.Web/serverfarms', appServicePlanName)
     siteConfig: {
-      linuxFxVersion: 'DOCKER|${containerRegistryName}.azurecr.io/${containerRegistryImageName}:${containerRegistryImageVersion}'
+      // linuxFxVersion: 'DOCKER|${containerRegistryName}.azurecr.io/${containerRegistryImageName}:${containerRegistryImageVersion}'
       appCommandLine: ''
     }
     appSettingsKeyValuePairs: {
