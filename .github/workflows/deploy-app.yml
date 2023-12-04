@@ -6,8 +6,16 @@ on:
       - 'app/**'
   workflow_dispatch: {}
 
+env:
+  REGISTRY_USERNAME: panchombacr
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  IMAGE_NAME: flask-app
+  IMAGE_VERSION: latest
+  AZURE_WEBAPP-NAME: panchomb-app
+
 jobs:
-  build-and-deploy:
+  build:
       runs-on: ubuntu-latest
       steps:
       # checkout the repo
@@ -27,10 +35,15 @@ jobs:
 
       - working-directory: ./app
         run: |
-          docker build . -t panchombacr.azurecr.io/flask-app-demo:latest
-          docker push panchombacr.azurecr.io/flask-app-demo:latest
+          docker build . -t ${{ REGISTRY_USERNAME }}.azurecr.io/flask-${{ IMAGE_NAME }}:${{ IMAGE_VERSION }}
+          docker push ${{ REGISTRY_USERNAME }}.azurecr.io/${{ IMAGE_NAME }}:${{ IMAGE_VERSION }}
 
-      - uses: azure/webapps-deploy@v2
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: azure/webapps-deploy@v3
         with:
-          app-name: 'panchomb-app'
-          images: 'panchombacr.azurecr.io/flask-app-demo:latest'
+          app-name: ${{ AZURE_WEBAPP-NAME }}
+          images: '${{ REGISTRY_USERNAME }}.azurecr.io/${{ IMAGE_NAME }}:${{ IMAGE_VERSION }}'
