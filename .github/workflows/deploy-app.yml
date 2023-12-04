@@ -35,7 +35,7 @@ jobs:
 
       - working-directory: ./app
         run: |
-          docker build . -t ${{ env.REGISTRY_USERNAME }}.azurecr.io/flask-${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
+          docker build . -t ${{ env.REGISTRY_USERNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
           docker push ${{ env.REGISTRY_USERNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
 
   deploy:
