@@ -9,7 +9,7 @@
         "value": "panchombacr"
       },
       "containerRegistryImageName": {
-        "value": "panchomb-image"
+        "value": "flask-app-demo"
       },
       "containerRegistryImageVersion": {
         "value": "latest"
