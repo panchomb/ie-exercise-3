@@ -35,8 +35,8 @@ jobs:
 
       - working-directory: ./app
         run: |
-          docker build . -t ${{ REGISTRY_USERNAME }}.azurecr.io/flask-${{ IMAGE_NAME }}:${{ IMAGE_VERSION }}
-          docker push ${{ REGISTRY_USERNAME }}.azurecr.io/${{ IMAGE_NAME }}:${{ IMAGE_VERSION }}
+          docker build . -t ${{ env.REGISTRY_USERNAME }}.azurecr.io/flask-${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
+          docker push ${{ env.REGISTRY_USERNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,5 +45,5 @@ jobs:
     steps:
       - uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ AZURE_WEBAPP_NAME }}
-          images: '${{ REGISTRY_USERNAME }}.azurecr.io/${{ IMAGE_NAME }}:${{ IMAGE_VERSION }}'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          images: '${{ env.REGISTRY_USERNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}'
