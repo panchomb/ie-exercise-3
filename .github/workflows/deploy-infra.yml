@@ -56,4 +56,4 @@ jobs:
       run: echo "BICEP_NAME_OUTPUT=$(az deployment group show --name ${{ env.USER_ALIAS }} --resource-group ${{ env.RESOURCE_GROUP_DEV }} --query 'properties.outputs.name' --output tsv)"
       
     - name: Display output
-      run: echo "Output Name: ${{ steps.capture_output.outputs.BICEP_NAME_OUTPUT }}"
+      run: echo "Output Name: ${{ steps.capture_output.outputs.BICEP_NAME_OUTPUT }}
