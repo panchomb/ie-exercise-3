@@ -15,7 +15,7 @@
         "value": "latest"
       },
       "appServicePlanName": {
-        "value": "panchomb-app-sp"
+        "value": "panchomb-asp"
       },
       "appName": {
         "value": "panchomb-app"
