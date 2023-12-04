@@ -12,7 +12,7 @@ env:
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
   IMAGE_NAME: flask-app
   IMAGE_VERSION: latest
-  AZURE_WEBAPP-NAME: panchomb-app
+  AZURE_WEBAPP_NAME: panchomb-app
 
 jobs:
   build:
@@ -45,5 +45,5 @@ jobs:
     steps:
       - uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ AZURE_WEBAPP-NAME }}
+          app-name: ${{ AZURE_WEBAPP_NAME }}
           images: '${{ REGISTRY_USERNAME }}.azurecr.io/${{ IMAGE_NAME }}:${{ IMAGE_VERSION }}'
