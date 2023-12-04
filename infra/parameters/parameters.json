@@ -8,9 +8,6 @@
       "containerRegistryName": {
         "value": "panchombacr"
       },
-      "containerRegistryImageVersion": {
-        "value": "latest"
-      },
       "appServicePlanName": {
         "value": "panchomb-asp"
       },
