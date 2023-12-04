@@ -5,6 +5,9 @@
       "username": {
         "value": "panchomb"
       },
+      "containerRegistryName": {
+        "value": "panchombacr"
+      },
       "containerRegistryImageVersion": {
         "value": "latest"
       },
