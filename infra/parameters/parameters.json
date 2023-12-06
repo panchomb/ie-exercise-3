@@ -5,6 +5,9 @@
       "username": {
         "value": "panchomb"
       },
+      "keyVaultName": {
+        "value": "panchombkv"
+      },
       "containerRegistryName": {
         "value": "panchombacr"
       },
