@@ -11,6 +11,12 @@
       "containerRegistryName": {
         "value": "panchombacr"
       },
+      "containerRegistryImageName": {
+        "value": "flask-demo"
+      },
+      "containerRegistryImageVersion": {
+        "value": "latest"
+      },
       "appServicePlanName": {
         "value": "panchomb-asp"
       },
