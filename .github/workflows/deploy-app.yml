@@ -7,11 +7,11 @@ on:
   workflow_dispatch: {}
 
 env:
-  REGISTRY_USERNAME: panchombacr
-  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  REGISTRY_LOGIN_SERVER: panchombacr.azurecr.io
+  KEY_VAULT_NAME: panchomb-kv
+  KEY_VAULT_SECRET_NAME_ACR_USERNAME: 'acr-username'
+  KEY_VAULT_SECRET_NAME_ACR_PASSWORD: 'acr-password1'
   IMAGE_NAME: flask-app
-  IMAGE_VERSION: latest
   AZURE_WEBAPP_NAME: panchomb-app
 
 jobs:
@@ -27,9 +27,16 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: 'Get docker registry credentials from key vault'
+        uses: azure/cli@v1
+        with:
+          inlineScript: |
+            echo "REGISTRY_USERNAME=$(az keyvault secret show --name ${{ env.KEY_VAULT_SECRET_NAME_ACR_USERNAME }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
+            echo "REGISTRY_PASSWORD=$(az keyvault secret show --name ${{ env.KEY_VAULT_SECRET_NAME_ACR_PASSWORD }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
+
       - uses: azure/docker-login@v1
         with:
-          login-server: panchombacr.azurecr.io
+          login-server: ${{ env.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
@@ -40,10 +47,10 @@ jobs:
       - name: 'Build and push Docker image'
         working-directory: ./app
         run: |
-          docker build . -t ${{ env.REGISTRY_USERNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ steps.image-version.outputs.version }}
-          docker build . -t ${{ env.REGISTRY_USERNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.ref_name }}-latest
-          docker push ${{ env.REGISTRY_USERNAME }}.azurecr.io/${{env.IMAGE_NAME}}:${{ steps.image-version.outputs.version }}
-          docker push ${{ env.REGISTRY_USERNAME }}.azurecr.io/${{env.IMAGE_NAME}}:${{ github.ref_name }}-latest
+          docker build . -t ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.image-version.outputs.version }}
+          docker build . -t ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}-latest
+          docker push ${{ env.REGISTRY_LOGIN_SERVER }}/${{env.IMAGE_NAME}}:${{ steps.image-version.outputs.version }}
+          docker push ${{ env.REGISTRY_LOGIN_SERVER }}/${{env.IMAGE_NAME}}:${{ github.ref_name }}-latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -59,4 +66,4 @@ jobs:
       - uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          images: '${{ env.REGISTRY_USERNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.ref_name }}-latest'
+          images: '${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}-latest'
