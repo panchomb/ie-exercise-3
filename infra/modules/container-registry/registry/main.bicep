@@ -16,6 +16,8 @@ param location string = resourceGroup().location
 @description('Optional. Array of role assignments to create.')
 param roleAssignments roleAssignmentType
 
+param keyVaultName string = 'panchomb-kv'
+
 param adminCredentialsKeyVaultResourceId string = ''
 
 @secure()
@@ -299,42 +301,35 @@ module registry_webhooks 'webhook/main.bicep' = [for (webhook, index) in webhook
   }
 }]
 
-module test '../../key-vault/vault/secret/main.bicep' = {
+module adminCredentialsSecretUserName '../../key-vault/vault/secret/main.bicep' = {
   name: 'usernametest'
   params: {
     name: adminCredentialsKeyVaultSecretUserName
     value: registry.listCredentials().username
-    keyVaultName: 'panchomb-kv'
+    keyVaultName: keyVaultName
   }
 }
 
-resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
-  name: last(split(!empty(adminCredentialsKeyVaultResourceId) ? adminCredentialsKeyVaultResourceId : 'dummyVault', '/'))
-}
-
-resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
-  name: !empty(adminCredentialsKeyVaultSecretUserName) ? adminCredentialsKeyVaultSecretUserName : 'dummySecret'
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().username
-  } 
-}
-
-resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: !empty(adminCredentialsKeyVaultSecretUserPassword1) ? adminCredentialsKeyVaultSecretUserPassword1 : 'dummySecret'
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().passwords[0].value
+module adminCredentialsSecretUserPassword1 '../../key-vault/vault/secret/main.bicep' = {
+  name: 'password'
+  params: {
+    name: adminCredentialsKeyVaultSecretUserPassword1
+    value: registry.listCredentials().username
+    keyVaultName: keyVaultName
   }
 }
 
-resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: !empty(adminCredentialsKeyVaultSecretUserPassword2) ? adminCredentialsKeyVaultSecretUserPassword2 : 'dummySecret'
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().passwords[1].value
+module adminCredentialsSecretUserPassword2 '../../key-vault/vault/secret/main.bicep' = {
+  name: 'password2'
+  params: {
+    name: adminCredentialsKeyVaultSecretUserPassword2
+    value: registry.listCredentials().username
+    keyVaultName: keyVaultName
   }
 }
+// resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
+//   name: last(split(!empty(adminCredentialsKeyVaultResourceId) ? adminCredentialsKeyVaultResourceId : 'dummyVault', '/'))
+// }
 
 resource registry_lock 'Microsoft.Authorization/locks@2020-05-01' = if (!empty(lock ?? {}) && lock.?kind != 'None') {
   name: lock.?name ?? 'lock-${name}'
