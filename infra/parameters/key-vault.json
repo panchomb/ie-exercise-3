@@ -8,7 +8,7 @@
         "roleAssignments": {
             "value": [
                 {
-                    "principalId": "7200f83e-ec45-4915-8c52-fb94147cfe5a",
+                    "principalId": "92269dfd-0bbd-4a7a-abe7-4d3c3aba3c8b",
                     "roleDefinitionIdOrName": "Key Vault Secrets User",
                     "principalType": "ServicePrincipal"
                 }
