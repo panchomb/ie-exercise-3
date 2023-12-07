@@ -11,7 +11,7 @@ resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existin
   name: adminCredentialsKeyVaultResourceId
 }
 
-resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
+resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
   name: !empty(adminCredentialsKeyVaultSecretUserName) ? adminCredentialsKeyVaultSecretUserName : 'dummySecret'
   parent: adminCredentialsKeyVault
   properties: {
@@ -19,7 +19,7 @@ resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = if
   } 
 }
 
-resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = {
   name: !empty(adminCredentialsKeyVaultSecretUserPassword1) ? adminCredentialsKeyVaultSecretUserPassword1 : 'dummySecret'
   parent: adminCredentialsKeyVault
   properties: {
@@ -27,7 +27,7 @@ resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   }
 }
 
-resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = {
   name: !empty(adminCredentialsKeyVaultSecretUserPassword2) ? adminCredentialsKeyVaultSecretUserPassword2 : 'dummySecret'
   parent: adminCredentialsKeyVault
   properties: {
