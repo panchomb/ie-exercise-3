@@ -68,9 +68,7 @@ module serverfarm 'modules/web/serverfarm/main.bicep' = {
 
 module website 'modules/web/site/main.bicep' = {
   dependsOn: [
-    keyVault
     registry
-    serverfarm
   ]
   name: 'exercise3-${username}-app'
   params: {
