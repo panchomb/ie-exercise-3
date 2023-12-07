@@ -299,6 +299,15 @@ module registry_webhooks 'webhook/main.bicep' = [for (webhook, index) in webhook
   }
 }]
 
+module test '../../key-vault/vault/secret/main.bicep' = {
+  name: 'usernametest'
+  params: {
+    name: adminCredentialsKeyVaultSecretUserName
+    value: registry.listCredentials().username
+    keyVaultName: 'panchomb-kv'
+  }
+}
+
 resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
   name: last(split(!empty(adminCredentialsKeyVaultResourceId) ? adminCredentialsKeyVaultResourceId : 'dummyVault', '/'))
 }
