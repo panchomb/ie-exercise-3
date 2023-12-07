@@ -186,35 +186,6 @@ resource defaultTelemetry 'Microsoft.Resources/deployments@2021-04-01' = if (ena
   }
 }
 
-
-resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
-  name: last(split(!empty(adminCredentialsKeyVaultResourceId) ? adminCredentialsKeyVaultResourceId : 'dummyVault', '/'))
-}
-
-resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
-  name: !empty(adminCredentialsKeyVaultSecretUserName) ? adminCredentialsKeyVaultSecretUserName : 'dummySecret'
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().username
-  } 
-}
-
-resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: !empty(adminCredentialsKeyVaultSecretUserPassword1) ? adminCredentialsKeyVaultSecretUserPassword1 : 'dummySecret'
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().passwords[0].value
-  }
-}
-
-resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: !empty(adminCredentialsKeyVaultSecretUserPassword2) ? adminCredentialsKeyVaultSecretUserPassword2 : 'dummySecret'
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().passwords[1].value
-  }
-}
-
 resource cMKKeyVault 'Microsoft.KeyVault/vaults@2023-02-01' existing = if (!empty(customerManagedKey.?keyVaultResourceId)) {
   name: last(split((customerManagedKey.?keyVaultResourceId ?? 'dummyVault'), '/'))
   scope: resourceGroup(split((customerManagedKey.?keyVaultResourceId ?? '//'), '/')[2], split((customerManagedKey.?keyVaultResourceId ?? '////'), '/')[4])
@@ -327,6 +298,34 @@ module registry_webhooks 'webhook/main.bicep' = [for (webhook, index) in webhook
     enableDefaultTelemetry: enableReferencedModulesTelemetry
   }
 }]
+
+resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
+  name: last(split(!empty(adminCredentialsKeyVaultResourceId) ? adminCredentialsKeyVaultResourceId : 'dummyVault', '/'))
+}
+
+resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
+  name: !empty(adminCredentialsKeyVaultSecretUserName) ? adminCredentialsKeyVaultSecretUserName : 'dummySecret'
+  parent: adminCredentialsKeyVault
+  properties: {
+   value: registry.listCredentials().username
+  } 
+}
+
+resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  name: !empty(adminCredentialsKeyVaultSecretUserPassword1) ? adminCredentialsKeyVaultSecretUserPassword1 : 'dummySecret'
+  parent: adminCredentialsKeyVault
+  properties: {
+   value: registry.listCredentials().passwords[0].value
+  }
+}
+
+resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  name: !empty(adminCredentialsKeyVaultSecretUserPassword2) ? adminCredentialsKeyVaultSecretUserPassword2 : 'dummySecret'
+  parent: adminCredentialsKeyVault
+  properties: {
+   value: registry.listCredentials().passwords[1].value
+  }
+}
 
 resource registry_lock 'Microsoft.Authorization/locks@2020-05-01' = if (!empty(lock ?? {}) && lock.?kind != 'None') {
   name: lock.?name ?? 'lock-${name}'
