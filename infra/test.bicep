@@ -8,7 +8,7 @@ param adminCredentialsKeyVaultSecretUserPassword2 string
 
 
 resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
-  name: adminCredentialsKeyVaultResourceId
+  name: empty(adminCredentialsKeyVaultResourceId) ? 'dummy' : adminCredentialsKeyVaultResourceId
 }
 
 resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
