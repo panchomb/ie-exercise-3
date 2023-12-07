@@ -35,6 +35,9 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
   name: keyVaultName
 }
 module registry 'modules/container-registry/registry/main.bicep' = {
+  dependsOn: [
+    keyVault
+  ]
   name: '${uniqueString(deployment().name)}-acr'
   params: {
     name: containerRegistryName
@@ -65,6 +68,7 @@ module serverfarm 'modules/web/serverfarm/main.bicep' = {
 
 module website 'modules/web/site/main.bicep' = {
   dependsOn: [
+    keyVault
     registry
     serverfarm
   ]
