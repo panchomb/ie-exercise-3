@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY_LOGIN_SERVER: panchombacr.azurecr.io
-  KEY_VAULT_NAME: panchombkv
+  KEY_VAULT_NAME: panchomb-kv
   KEY_VAULT_SECRET_NAME_ACR_USERNAME: 'acr-username'
   KEY_VAULT_SECRET_NAME_ACR_PASSWORD: 'acr-password1'
   IMAGE_NAME: flask-app

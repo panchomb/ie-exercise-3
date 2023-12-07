@@ -16,44 +16,16 @@ param location string = resourceGroup().location
 @description('Optional. Array of role assignments to create.')
 param roleAssignments roleAssignmentType
 
-param adminCredentialsKeyVaultResourceId string
+param adminCredentialsKeyVaultResourceId string = ''
 
 @secure()
-param adminCredentialsKeyVaultSecretUserName string
+param adminCredentialsKeyVaultSecretUserName string = ''
 
 @secure()
-param adminCredentialsKeyVaultSecretUserPassword1 string
+param adminCredentialsKeyVaultSecretUserPassword1 string = ''
 
 @secure()
-param adminCredentialsKeyVaultSecretUserPassword2 string
-
-resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
-  name: last(split(adminCredentialsKeyVaultResourceId, '/'))
-}
-
-resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: adminCredentialsKeyVaultSecretUserName
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().username
-  } 
-}
-
-resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: adminCredentialsKeyVaultSecretUserPassword1
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().passwords[0].value
-  }
-}
-
-resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: adminCredentialsKeyVaultSecretUserPassword2
-  parent: adminCredentialsKeyVault
-  properties: {
-   value: registry.listCredentials().passwords[1].value
-  }
-}
+param adminCredentialsKeyVaultSecretUserPassword2 string = ''
 
 @description('Optional. Tier of your Azure container registry.')
 @allowed([
@@ -211,6 +183,35 @@ resource defaultTelemetry 'Microsoft.Resources/deployments@2021-04-01' = if (ena
       contentVersion: '1.0.0.0'
       resources: []
     }
+  }
+}
+
+
+resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
+  name: last(split(!empty(adminCredentialsKeyVaultResourceId) ? adminCredentialsKeyVaultResourceId : 'dummyVault', '/'))
+}
+
+resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
+  name: !empty(adminCredentialsKeyVaultSecretUserName) ? adminCredentialsKeyVaultSecretUserName : 'dummySecret'
+  parent: adminCredentialsKeyVault
+  properties: {
+   value: registry.listCredentials().username
+  } 
+}
+
+resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  name: !empty(adminCredentialsKeyVaultSecretUserPassword1) ? adminCredentialsKeyVaultSecretUserPassword1 : 'dummySecret'
+  parent: adminCredentialsKeyVault
+  properties: {
+   value: registry.listCredentials().passwords[0].value
+  }
+}
+
+resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  name: !empty(adminCredentialsKeyVaultSecretUserPassword2) ? adminCredentialsKeyVaultSecretUserPassword2 : 'dummySecret'
+  parent: adminCredentialsKeyVault
+  properties: {
+   value: registry.listCredentials().passwords[1].value
   }
 }
 

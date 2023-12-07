@@ -6,7 +6,7 @@
         "value": "panchomb"
       },
       "keyVaultName": {
-        "value": "panchombkv"
+        "value": "panchomb-kv"
       },
       "containerRegistryName": {
         "value": "panchombacr"
