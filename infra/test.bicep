@@ -6,31 +6,27 @@ param adminCredentialsKeyVaultSecretUserPassword1 string
 @secure()
 param adminCredentialsKeyVaultSecretUserPassword2 string
 
-
 resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
-  name: empty(adminCredentialsKeyVaultResourceId) ? 'dummy' : adminCredentialsKeyVaultResourceId
+  name: adminCredentialsKeyVaultResourceId
 }
 
 resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
-  name: !empty(adminCredentialsKeyVaultSecretUserName) ? adminCredentialsKeyVaultSecretUserName : 'dummySecret'
-  parent: adminCredentialsKeyVault
+  name: '${adminCredentialsKeyVault.name}/${!empty(adminCredentialsKeyVaultSecretUserName) ? adminCredentialsKeyVaultSecretUserName : 'dummySecret'}'
   properties: {
-   value: 'username'
-  } 
+    value: 'username'
+  }
 }
 
 resource secretAdminPassword1 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = {
-  name: !empty(adminCredentialsKeyVaultSecretUserPassword1) ? adminCredentialsKeyVaultSecretUserPassword1 : 'dummySecret'
-  parent: adminCredentialsKeyVault
+  name: '${adminCredentialsKeyVault.name}/${!empty(adminCredentialsKeyVaultSecretUserPassword1) ? adminCredentialsKeyVaultSecretUserPassword1 : 'dummySecret'}'
   properties: {
-   value: 'password1'
+    value: 'password1'
   }
 }
 
 resource secretAdminPassword2 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = {
-  name: !empty(adminCredentialsKeyVaultSecretUserPassword2) ? adminCredentialsKeyVaultSecretUserPassword2 : 'dummySecret'
-  parent: adminCredentialsKeyVault
+  name: '${adminCredentialsKeyVault.name}/${!empty(adminCredentialsKeyVaultSecretUserPassword2) ? adminCredentialsKeyVaultSecretUserPassword2 : 'dummySecret'}'
   properties: {
-   value: 'password2'
+    value: 'password2'
   }
 }
