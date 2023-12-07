@@ -1,4 +1,4 @@
-param adminCredentialsKeyVaultResourceId string = ''
+param adminCredentialsKeyVaultResourceId string = resourceId('Microsoft.KeyVault/vaults', 'panchomb-kv')
 @secure()
 param adminCredentialsKeyVaultSecretUserName string
 @secure()
@@ -8,7 +8,7 @@ param adminCredentialsKeyVaultSecretUserPassword2 string
 
 
 resource adminCredentialsKeyVault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
-  name: last(split(!empty(adminCredentialsKeyVaultResourceId) ? adminCredentialsKeyVaultResourceId : 'dummyVault', '/'))
+  name: adminCredentialsKeyVaultResourceId
 }
 
 resource secretAdminUserName 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = if (!empty(adminCredentialsKeyVaultSecretUserName)) {
