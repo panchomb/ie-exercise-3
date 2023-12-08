@@ -37,8 +37,8 @@ jobs:
       - uses: azure/docker-login@v1
         with:
           login-server: ${{ env.REGISTRY_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          username: ${{ env.REGISTRY_USERNAME }}
+          password: ${{ env.REGISTRY_PASSWORD }}
 
       - name: Set image version
         id: image-version
