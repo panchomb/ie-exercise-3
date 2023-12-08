@@ -68,7 +68,7 @@ module serverfarm 'modules/web/serverfarm/main.bicep' = {
 
 module website 'modules/web/site/main.bicep' = {
   dependsOn: [
-    registry
+    serverfarm
   ]
   name: 'exercise3-${username}-app'
   params: {
@@ -82,6 +82,7 @@ module website 'modules/web/site/main.bicep' = {
     }
     appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
+      DUMMY: registry.outputs.name
     }
     dockerRegistryServerUrl: 'https://${containerRegistryName}.azurecr.io'
     dockerRegistryServerUsername: keyVault.getSecret(keyVaultSecretNameACRUsername)
